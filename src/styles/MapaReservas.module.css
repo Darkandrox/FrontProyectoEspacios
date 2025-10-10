@@ -1,0 +1,110 @@
+/* Estilos para el mapa interactivo de reservas */
+
+/* Layout principal: mapa a la izquierda, lista a la derecha */
+.mapaReservasLayout {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.listaSide {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #f5f7fa;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  padding: 32px 24px;
+  min-width: 280px;
+}
+
+
+.mapaReservasLayout {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.mapaSide {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.tablaSide {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #f5f7fa;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  padding: 32px 24px;
+  min-width: 340px;
+}
+
+.tablaTitulo {
+  font-size: 1.4rem;
+  color: #1a237e;
+  margin-bottom: 18px;
+  font-weight: bold;
+}
+
+.tablaBloques {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(26,35,126,0.08);
+}
+.tablaBloques th {
+  background: #1976d2;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 8px;
+  text-align: left;
+  font-size: 1rem;
+}
+.tablaBloques td {
+  padding: 10px 8px;
+  font-size: 0.98rem;
+  color: #222;
+  border-bottom: 1px solid #e0e0e0;
+}
+.tablaBloques tr:last-child td {
+  border-bottom: none;
+}
+.mapaImg {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  position: relative;
+}
+
+.mapaFija {
+  position: fixed;
+  top: 110px; /* Deja espacio para la barra y el logo */
+  left: 40px;
+  z-index: 100;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  max-width: 612px;
+  width: 35vw;
+  height: auto;
+  transition: width 0.2s, max-width 0.2s;
+  }
+
+.bloqueBtn:hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+}

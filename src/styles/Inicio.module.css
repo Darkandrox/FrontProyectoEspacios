@@ -1,0 +1,115 @@
+/* Inicio.module.css */
+
+.carousel {
+  max-height: 500px;
+}
+
+.bannerImg {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.caption {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Sección de búsqueda */
+.searchSection {
+  background: #f4f6fc;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.searchForm {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.searchForm select,
+.searchForm input {
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  width: 160px;
+}
+
+.searchForm button {
+  background-color: #d6001c;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.searchForm button:hover {
+  background-color: #a80014;
+}
+
+/* Espacios destacados */
+.featured {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #fff;
+}
+
+.featured h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.cardInfo {
+  padding: 20px;
+}
+
+.cardInfo h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.cardInfo button {
+  background-color: #d6001c;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cardInfo button:hover {
+  background-color: #a80014;
+}

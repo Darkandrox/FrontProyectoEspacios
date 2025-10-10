@@ -1,0 +1,109 @@
+/* Ejemplo base para ambos: Nosotros.module.css y Contacto.module.css */
+
+.container {
+  font-family: "Segoe UI", sans-serif;
+  color: #333;
+  background-color: #f4f6fc;
+}
+
+/* Banner */
+.banner {
+  background: linear-gradient(to bottom, #d6001c, #a80014);
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.bannerContent h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.bannerContent p {
+  font-size: 1.2rem;
+}
+
+/* Cards para equipo */
+.team, .contactForm {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.team h2, .contactForm h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.cardInfo {
+  padding: 20px;
+}
+
+.cardInfo h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+/* Formulario */
+.contactForm form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.contactForm input,
+.contactForm textarea {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+.contactForm textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contactForm button {
+  background-color: #d6001c;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.contactForm button:hover {
+  background-color: #a80014;
+}

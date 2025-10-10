@@ -1,0 +1,71 @@
+.registroContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f2f2f2, #e0e7ff);
+}
+
+.registroBox {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  width: 370px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+}
+
+.logoPascual {
+  width: 120px;
+  margin-bottom: 18px;
+}
+
+.registroBox h2 {
+  margin-bottom: 18px;
+  color: #1a237e;
+  font-size: 1.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.inputGroup label {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.inputGroup input {
+  padding: 10px;
+  border: 1px solid #bdbdbd;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.btnRegistro {
+  background: #1a237e;
+  color: #fff;
+  border: none;
+  padding: 10px 0;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btnRegistro:hover {
+  background: #3949ab;
+}
+
+.errorMsg {
+  color: #d32f2f;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}

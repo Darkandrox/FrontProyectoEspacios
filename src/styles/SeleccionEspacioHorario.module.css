@@ -1,0 +1,226 @@
+.imagenesSalonesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+  justify-items: center;
+  align-items: center;
+}
+
+.imagenesSalonesGrid img {
+  width: 225px;
+  height: 225px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  border: 2px solid #FFD600;
+  background: #fff;
+  position: relative;
+  z-index: 1; /* detrás de menús o modales */
+}
+
+.seleccionHorarioGrid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 48px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.filtrosCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 320px;
+  max-width: 400px;
+}
+
+.imagenCol {
+  flex: 1;
+}
+
+.imagenInteractiva {
+  width: 480px;
+  height: 480px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  background: #fff;
+  border: 3px solid #FFD600;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  display: block;
+  position: relative;
+  z-index: 1; /* debajo del menú */
+}
+
+.imagenInteractiva:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  border-color: #003366;
+}
+
+.confirmacionReservaModal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* más arriba que imágenes */
+}
+
+.confirmacionReservaBox {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 40px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  text-align: center;
+  min-width: 320px;
+  max-width: 400px;
+  color: #003366;
+  font-size: 1.15rem;
+}
+
+.confirmacionReservaBox h3 {
+  color: #FFD600;
+  margin-bottom: 18px;
+}
+
+.confirmacionReservaBox button {
+  margin-top: 18px;
+}
+
+/* Colores institucionales Pascual Bravo: azul, amarillo, blanco */
+.seleccionEspacioHorarioPage {
+  background: linear-gradient(135deg, #003366 60%, #FFD600 100%);
+  min-height: 100vh;
+  padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+h2 {
+  color: #003366;
+  background: #FFD600;
+  padding: 12px 32px;
+  border-radius: 12px;
+  margin-bottom: 32px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+label {
+  color: #003366;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+input[type="text"], select {
+  padding: 8px 12px;
+  border: 2px solid #003366;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 1rem;
+  background: #fff;
+  color: #003366;
+  transition: border-color 0.2s;
+}
+
+input[type="text"]:focus, select:focus {
+  border-color: #FFD600;
+  outline: none;
+}
+
+button {
+  background: #003366;
+  color: #FFD600;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 28px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 16px 8px 0 0;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background 0.2s, color 0.2s;
+}
+
+button:disabled {
+  background: #bbb;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.btnCerrarModal {
+  background: #FFD600;
+  color: #003366;
+  border: 2px solid #003366;
+  margin-left: 0;
+}
+
+/* Mensaje de horarios ocupados */
+.smallWarning {
+  color: #d32f2f;
+  background: #fff3e0;
+  padding: 4px 12px;
+  border-radius: 6px;
+  margin-top: 4px;
+  font-size: 0.95rem;
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.seleccionEspacioHorarioPage > * {
+  animation: fadeInUp 0.7s;
+}
+
+/* ----------------------------- */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .seleccionHorarioGrid {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .imagenInteractiva {
+    width: 350px;
+    height: 350px;
+  }
+
+  .imagenesSalonesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Celulares */
+@media (max-width: 576px) {
+  .imagenInteractiva {
+    width: 90%;
+    height: auto;
+  }
+
+  .imagenesSalonesGrid img {
+    width: 90%;
+    height: auto;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    padding: 8px 16px;
+  }
+
+  .confirmacionReservaBox {
+    width: 90%;
+    padding: 20px;
+  }
+}
