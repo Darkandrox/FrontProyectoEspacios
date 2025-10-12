@@ -8,32 +8,35 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const response = await fetch("http://localhost:8080/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+  try {
+    const response = await fetch("http://localhost:8080/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
 
-      if (!response.ok) {
-        throw new Error("Credenciales incorrectas");
-      }
-
-      const data = await response.json();
-
-      // ✅ Aquí guardas el token y rediriges al inicio
-      localStorage.setItem("token", data.token);
-      navigate("/home");
-
-    } catch (error) {
-      setError(error.message);
+    if (!response.ok) {
+      throw new Error("Credenciales incorrectas");
     }
-    
-    
-  };
+
+    const data = await response.json();
+
+    // ✅ Guarda token y correo en localStorage
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("userEmail", data.email);
+
+    // (opcional) muestra el contenido guardado en consola
+    console.log("Inicio de sesión exitoso:", data);
+
+    navigate("/home");
+  } catch (error) {
+    setError(error.message);
+  }
+};
+
   
 
   return (
@@ -72,7 +75,7 @@ const Login = () => {
 
           
         <p className={styles.forgotPassword}>
-          <a href="/forgot-password">¿Olvidaste tu contraseña?</a>
+          <a href="olvidePass">¿Olvidaste tu contraseña?</a>
         </p>
       </form>
     </div>

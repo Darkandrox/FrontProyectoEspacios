@@ -1,0 +1,236 @@
+.mainContainer {
+  background: linear-gradient(to bottom right, #f5f9ff, #ffffff);
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+.header {
+  background-color: #003366;
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: #cfe3ff;
+  font-size: 1rem;
+}
+
+.sectionContainer {
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.successMessage {
+  background-color: #e8f9ee;
+  border-left: 4px solid #2ca84e;
+  color: #2e7d32;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+}
+
+.spaceList {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.searchContainer {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.iconSearch {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  color: gray;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px 12px 12px 36px;
+  border: 2px solid #ccdfff;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+}
+
+.searchInput:focus {
+  border-color: #0056b3;
+  outline: none;
+}
+
+.categoryCard {
+  border: 2px solid #e6edff;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.categoryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #eef5ff;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+.categoryInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.categoryTitle {
+  font-weight: 600;
+  color: #003366;
+}
+
+.spaceGrid {
+  padding: 10px 15px 15px;
+  display: grid;
+  gap: 10px;
+}
+
+.spaceItem {
+  text-align: left;
+  border: 2px solid #e0e7ff;
+  padding: 15px;
+  border-radius: 8px;
+  transition: all 0.3s;
+  background: white;
+}
+
+.spaceItem:hover {
+  border-color: #003366;
+  background-color: #f2f8ff;
+}
+
+.active {
+  border-color: #004aad;
+  background-color: #e6f0ff;
+}
+
+.spaceHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.spaceName {
+  font-weight: 600;
+  color: #003366;
+}
+
+.spaceBlock {
+  background: #004aad;
+  color: white;
+  font-size: 0.75rem;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.spaceDetails {
+  color: gray;
+  font-size: 0.85rem;
+}
+
+.sidebar {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+}
+
+.sidebarTitle {
+  font-size: 1.4rem;
+  color: #003366;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.infoBox {
+  background: #f3f8ff;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #003366;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ccdfff;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  transition: all 0.3s;
+}
+
+.input:focus {
+  border-color: #004aad;
+  outline: none;
+}
+
+.btnReserva {
+  width: 100%;
+  padding: 12px;
+  background-color: #004aad;
+  color: white;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btnReserva:hover {
+  background-color: #003b8e;
+}
+
+.disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.reservasBox {
+  margin-top: 20px;
+  border-top: 2px solid #eef2ff;
+  padding-top: 10px;
+}
+
+.reservaItem {
+  background: #f6f9ff;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
