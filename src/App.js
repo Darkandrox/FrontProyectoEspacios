@@ -6,7 +6,8 @@ import OlvideClave from "./vistas/OlvideClave"; // componente para la vista de r
 import Inicio from "./vistas/Inicio"; // componente para la vista de inicio
 import Nosotros from "./vistas/Nosotros"; // componente para la vista de nosotros
 import Contacto from "./vistas/Contacto"; // componente para la vista de contacto
-
+import Registro from "./vistas/Registro"; // componente para la vista de registro
+import VistaReservas from "./vistas/VistaReservas"; // componente para la vista de reservas (solo admin)
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
         <Route path="/home" element={<Inicio />} />
         <Route path="/nosotros" element={<Nosotros />} />
         <Route path="/contacto" element={<Contacto />} />
-        
+        <Route path="/registro" element={<Registro/>} />
+        <Route path="/vistareservas" element={<VistaReservas />} />
       
  
       </Routes>

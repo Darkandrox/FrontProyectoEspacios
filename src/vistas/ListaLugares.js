@@ -214,10 +214,10 @@ const handleBooking = async () => {
   }
 
   const reserva = {
-    espacioId: selectedSpace.id, // Asegúrate de que selectedSpace tenga el id
+    espacioId: selectedSpace.id,
     fecha: selectedDate,
     horaInicio: selectedTime,
-    horaFin: selectedTimeEnd
+    horaFin: selectedTimeEnd,
   };
 
   try {
@@ -230,12 +230,25 @@ const handleBooking = async () => {
       body: JSON.stringify(reserva),
     });
 
-    const data = await response.json(); // Siempre JSON
+    const data = await response.json();
 
-    if (response.ok) {
-      setBookings([...bookings, data]);
+    if (response.ok && data.reserva) {
+      // Construir el objeto de reserva para mostrar en la lista
+      const nuevaReserva = {
+        id: data.reserva.id,
+        space: data.reserva.espacio?.nombre || "Espacio desconocido",
+        date: data.reserva.fecha,
+        time: `${data.reserva.horaInicio} - ${data.reserva.horaFin}`,
+      };
+
+      // Actualiza el estado de reservas
+      setBookings((prev) => [...prev, nuevaReserva]);
+
+      // Muestra mensaje de éxito
       setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 3000);
+      setTimeout(() => setShowSuccess(false), 15000);
+
+      // Limpia los campos del formulario
       setSelectedSpace("");
       setSelectedDate("");
       setSelectedTime("");
@@ -248,6 +261,7 @@ const handleBooking = async () => {
     alert("No se pudo conectar con el servidor");
   }
 };
+
 
 
   const filteredSpaces = Object.entries(spaces).reduce((acc, [category, data]) => {

@@ -1,114 +1,131 @@
 import React, { useState } from "react";
-import styles from "../styles/Registro.module.css";
-import logoPascual from "../assets/pascuallogo.png";
+import StyleRegistro from "../styles/Registro.module.css";
 
-const Registro = () => {
-	const [formData, setFormData] = useState({
-		nombre: "",
-		email: "",
-		password: "",
-		carrera: ""
-	});
-	const [error, setError] = useState("");
-	const [success, setSuccess] = useState("");
+export default function RegistroUsuarios() {
+  const [formData, setFormData] = useState({
+    nombre: "",
+    apellido: "",
+    email: "",
+    password: "",
+    telefono: "",
+    role: "ROLE_USER",
+  });
 
-	const handleChange = (e) => {
-		setFormData({ ...formData, [e.target.name]: e.target.value });
-		setError("");
-		setSuccess("");
-	};
+  const [mensaje, setMensaje] = useState("");
+  const [error, setError] = useState("");
 
-	const validarCorreo = (correo) => {
-		return /@pascualbravo\.edu\.co$/i.test(correo);
-	};
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-	const handleSubmit = async (e) => {
-			e.preventDefault();
-			if (!validarCorreo(formData.email)) {
-				setError("El correo debe ser institucional (@pascualbravo.edu.co)");
-				return;
-			}
-			try {
-				const response = await fetch("http://localhost:8080/ReservasAPP/registro", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json"
-					},
-					body: JSON.stringify(formData)
-				});
-				if (response.ok) {
-					setSuccess("¡Registro exitoso!");
-					setFormData({ nombre: "", email: "", password: "", carrera: "" });
-				} else {
-					setError("Error al registrar usuario. Intenta nuevamente.");
-				}
-			} catch (err) {
-				setError("Error de conexión con el servidor.");
-			}
-		};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMensaje("");
+    setError("");
 
-	return (
-		<div className={styles.registroContainer}>
-			<div className={styles.registroBox}>
-				<img src={logoPascual} alt="Logo Pascual Bravo" className={styles.logoPascual} />
-				<h2>Registro de Usuario</h2>
-				{error && <div className={styles.errorMsg}>{error}</div>}
-				{success && <div style={{ color: '#388e3c', marginBottom: 10 }}>{success}</div>}
-				<form onSubmit={handleSubmit}>
-					<div className={styles.inputGroup}>
-						<label htmlFor="nombre">Nombre completo</label>
-						<input
-							type="text"
-							name="nombre"
-							id="nombre"
-							placeholder="Ingresa tu nombre"
-							value={formData.nombre}
-							onChange={handleChange}
-							required
-						/>
-					</div>
-					<div className={styles.inputGroup}>
-						<label htmlFor="email">Correo institucional</label>
-						<input
-							type="email"
-							name="email"
-							id="email"
-							placeholder="usuario@pascualbravo.edu.co"
-							value={formData.email}
-							onChange={handleChange}
-							required
-						/>
-					</div>
-					<div className={styles.inputGroup}>
-						<label htmlFor="password">Contraseña</label>
-						<input
-							type="password"
-							name="password"
-							id="password"
-							placeholder="Crea una contraseña"
-							value={formData.password}
-							onChange={handleChange}
-							required
-						/>
-					</div>
-					<div className={styles.inputGroup}>
-						<label htmlFor="carrera">Carrera (opcional)</label>
-						<input
-							type="text"
-							name="carrera"
-							id="carrera"
-							placeholder="Tu carrera o área"
-							value={formData.carrera}
-							onChange={handleChange}
-						/>
-					</div>
-					<button type="submit" className={styles.btnRegistro}>
-						Registrarse
-					</button>
-				</form>
-			</div>
-		</div>
-	);
-};
+    try {
+      const token = localStorage.getItem("token"); // Solo necesario si creas admin
+      const response = await fetch("http://localhost:8080/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(formData.role === "ROLE_ADMIN" && token
+            ? { Authorization: `Bearer ${token}` }
+            : {}),
+        },
+        body: JSON.stringify(formData),
+      });
 
-export default Registro;
+      const data = await response.json();
+
+      if (response.ok) {
+        setMensaje(`✅ ${data.mensaje}`);
+      } else {
+        setError(`❌ ${data.error}`);
+      }
+    } catch (err) {
+      setError("Error al conectar con el servidor");
+    }
+  };
+
+  return (
+    <div className={StyleRegistro.contenedor}>
+      <h2 className={StyleRegistro.titulo}>Registro de Usuarios</h2>
+      <form onSubmit={handleSubmit} className={StyleRegistro.formulario}>
+        <div className={StyleRegistro.campo}>
+          <label>Nombre:</label>
+          <input
+            type="text"
+            name="nombre"
+            value={formData.nombre}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className={StyleRegistro.campo}>
+          <label>Apellido:</label>
+          <input
+            type="text"
+            name="apellido"
+            value={formData.apellido}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className={StyleRegistro.campo}>
+          <label>Email:</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className={StyleRegistro.campo}>
+          <label>Contraseña:</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className={StyleRegistro.campo}>
+          <label>Teléfono:</label>
+          <input
+            type="text"
+            name="telefono"
+            value={formData.telefono}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className={StyleRegistro.campo}>
+          <label>Rol:</label>
+          <select
+            name="role"
+            value={formData.role}
+            onChange={handleChange}
+            className={StyleRegistro.select}
+          >
+            <option value="ROLE_USER">Usuario</option>
+            <option value="ROLE_ADMIN">Administrador</option>
+          </select>
+        </div>
+
+        <button type="submit" className={StyleRegistro.boton}>
+          Registrar
+        </button>
+      </form>
+
+      {mensaje && <p className={StyleRegistro.mensaje}>{mensaje}</p>}
+      {error && <p className={StyleRegistro.error}>{error}</p>}
+    </div>
+  );
+}

@@ -1,115 +1,99 @@
-/* Inicio.module.css */
-
-.carousel {
-  max-height: 500px;
-}
-
-.bannerImg {
-  width: 100%;
-  height: 500px;
+.carousel img {
+  height: 75vh;
   object-fit: cover;
 }
 
-.caption {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 20px;
-  border-radius: 10px;
-}
-
-/* Sección de búsqueda */
-.searchSection {
-  background: #f4f6fc;
-  padding: 40px 20px;
-  display: flex;
-  justify-content: center;
-}
-
-.searchForm {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-}
-
-.searchForm select,
-.searchForm input {
-  padding: 12px;
-  border: none;
-  border-radius: 6px;
-  width: 160px;
-}
-
-.searchForm button {
-  background-color: #d6001c;
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.3s;
-}
-
-.searchForm button:hover {
-  background-color: #a80014;
-}
-
-/* Espacios destacados */
-.featured {
-  text-align: center;
-  padding: 60px 20px;
-  background-color: #fff;
-}
-
-.featured h2 {
+.caption h3 {
   font-size: 2rem;
-  margin-bottom: 30px;
+  font-weight: 600;
 }
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-  max-width: 1100px;
+.infoSection {
+  background-color: #f5f7fa;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.infoContainer {
+  max-width: 1000px;
   margin: 0 auto;
 }
 
+.misionVision {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.misionVision div {
+  flex: 1 1 45%;
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Programas */
+.featuredPrograms,
+.espaciosSection {
+  background: #ffffff;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
 .card {
-  background-color: #fff;
+  width: 300px;
+  background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  transition: transform 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
 .card:hover {
-  transform: scale(1.03);
+  transform: translateY(-5px);
 }
 
 .card img {
   width: 100%;
-  height: 180px;
+  height: 200px;
   object-fit: cover;
 }
 
 .cardInfo {
-  padding: 20px;
+  padding: 1.2rem;
 }
 
 .cardInfo h3 {
-  font-size: 1.3rem;
-  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #0a1f44;
 }
 
-.cardInfo button {
-  background-color: #d6001c;
-  border: none;
+.cardInfo p {
+  color: #555;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+/* Footer */
+.footer {
+  background-color: #0a1f44;
   color: white;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
+  text-align: center;
+  padding: 2rem;
 }
 
-.cardInfo button:hover {
-  background-color: #a80014;
+.espaciosIntro {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  color: #444;
 }

@@ -1,37 +1,48 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode"; // 👈 Instala con: npm install jwt-decode
 import StyleNav from "../styles/NavBar.module.css";
 import Logo from "../assets/pascualogohorizontal.png";
-
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userRole, setUserRole] = useState(null);
   const navigate = useNavigate();
 
-  // Revisa el token cada vez que cambia
+  // ✅ Revisa token y rol al cargar o cambiar
   useEffect(() => {
     const checkLogin = () => {
       const token = localStorage.getItem("token");
-      setIsLoggedIn(!!token);
+
+      if (token) {
+        try {
+          const decoded = jwtDecode(token);
+          const role = decoded.role || decoded["role"];
+          setUserRole(role);
+          setIsLoggedIn(true);
+        } catch (error) {
+          console.error("Error al decodificar el token:", error);
+          setIsLoggedIn(false);
+          setUserRole(null);
+        }
+      } else {
+        setIsLoggedIn(false);
+        setUserRole(null);
+      }
     };
 
-    // Verifica al montar
     checkLogin();
-
-    // Listener de cambios en localStorage (para cuando se loguea en otra pestaña)
     window.addEventListener("storage", checkLogin);
-
-    return () => {
-      window.removeEventListener("storage", checkLogin);
-    };
+    return () => window.removeEventListener("storage", checkLogin);
   }, []);
 
   const handleMenuClick = () => setIsMenuOpen((prev) => !prev);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    setIsLoggedIn(false); // Actualiza la barra inmediatamente
+    setIsLoggedIn(false);
+    setUserRole(null);
     navigate("/login");
   };
 
@@ -63,15 +74,22 @@ const Navbar = () => {
           }`}
         >
           <a onClick={() => navigate("/home")}>Inicio</a>
-          <a onClick={() => navigate("/nosotros")}>Contacto</a>
-          <a onClick={() => navigate("/contacto")}>Nosotros</a>
+          <a onClick={() => navigate("/nosotros")}>Nosotros</a>
+          <a onClick={() => navigate("/contacto")}>Contacto</a>
+
+          {/* ✅ Solo visible para administradores */}
+          {userRole === "ROLE_ADMIN" && (
+            <>
+              <a onClick={() => navigate("/registro")}>Registro</a>
+              <a onClick={() => navigate("/vistareservas")}>BD</a>
+            </>
+          )}
+
+          {/* ✅ Solo visible para usuarios logueados */}
           {isLoggedIn && <a onClick={() => navigate("/reservas")}>Reservas</a>}
 
           {!isLoggedIn ? (
-            <button
-              onClick={handleLoginRedirect}
-              className={StyleNav.btnLogin}
-            >
+            <button onClick={handleLoginRedirect} className={StyleNav.btnLogin}>
               Iniciar Sesión
             </button>
           ) : (
@@ -86,4 +104,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

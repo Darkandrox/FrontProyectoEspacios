@@ -9,30 +9,51 @@ import { useNavigate } from "react-router-dom";
 const Inicio = () => {
   const navigate = useNavigate();
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    navigate("/reservas"); // Redirige a la página de reservas
-  };
+  const programas = [
+    {
+      titulo: "Ingeniería en Sistemas",
+      descripcion:
+        "Formamos profesionales con enfoque en desarrollo de software, redes y ciberseguridad.",
+      img: "https://images.unsplash.com/photo-1581091215367-59ab6c2e9b1d",
+    },
+    {
+      titulo: "Ingeniería Electrónica",
+      descripcion:
+        "Aprende sobre automatización, control y diseño de sistemas inteligentes.",
+      img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
+    },
+    {
+      titulo: "Ingeniería Mecatrónica",
+      descripcion:
+        "Integra mecánica, electrónica y programación en proyectos de robótica avanzada.",
+      img: "https://images.unsplash.com/photo-1554475901-4538ddfbccc2",
+    },
+  ];
 
-  const espaciosDestacados = [
+  const espacios = [
     {
       nombre: "Auditorio Principal",
+      descripcion:
+        "Espacio amplio con capacidad para más de 200 personas, ideal para conferencias, exposiciones y ceremonias institucionales.",
       img: "https://images.unsplash.com/photo-1503428593586-e225b39bddfe",
     },
     {
       nombre: "Laboratorio de Robótica",
+      descripcion:
+        "Equipado con brazos robóticos, sensores y plataformas de automatización para prácticas de control y programación.",
       img: "https://images.unsplash.com/photo-1581092580495-4c8e1dba90f6",
     },
     {
       nombre: "Sala de Innovación",
+      descripcion:
+        "Un entorno moderno diseñado para el trabajo colaborativo, el emprendimiento y el desarrollo de ideas tecnológicas.",
       img: "https://images.unsplash.com/photo-1593642634315-48f5414c3ad9",
     },
   ];
 
   return (
     <div>
-
-      {/* Carousel Banner */}
+      {/* 🟦 Banner principal */}
       <Carousel fade interval={4000} className={styles.carousel}>
         <Carousel.Item>
           <img
@@ -71,37 +92,85 @@ const Inicio = () => {
         </Carousel.Item>
       </Carousel>
 
-      {/* Sección de búsqueda */}
-      <section className={styles.searchSection}>
-        <form className={styles.searchForm} onSubmit={handleSearch}>
-          <select required>
-            <option value="">Tipo de espacio</option>
-            <option value="salon">Salón</option>
-            <option value="laboratorio">Laboratorio</option>
-            <option value="auditorio">Auditorio</option>
-          </select>
-          <input type="date" required />
-          <input type="time" required />
-          <input type="time" required />
-          <button type="submit">Buscar</button>
-        </form>
+      {/* 🧠 Misión y visión */}
+      <section className={styles.infoSection}>
+        <div className={styles.infoContainer}>
+          <h2>Bienvenido a la Facultad de Ingeniería</h2>
+          <p>
+            Impulsamos la innovación tecnológica formando profesionales líderes
+            en ciencia, tecnología e investigación. Nuestro compromiso es con la
+            excelencia académica y la transformación digital del entorno.
+          </p>
+
+          <div className={styles.misionVision}>
+            <div>
+              <h3>Misión</h3>
+              <p>
+                Formar ingenieros éticos, creativos y competentes para resolver
+                los retos tecnológicos de la sociedad.
+              </p>
+            </div>
+            <div>
+              <h3>Visión</h3>
+              <p>
+                Ser un referente nacional e internacional en educación
+                tecnológica, innovación y transferencia de conocimiento.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* Espacios destacados */}
-      <section className={styles.featured}>
-        <h2>Espacios destacados</h2>
+      {/* 💻 Programas destacados */}
+      <section className={styles.featuredPrograms}>
+        <h2>Programas Destacados</h2>
         <div className={styles.cards}>
-          {espaciosDestacados.map((espacio, i) => (
+          {programas.map((p, i) => (
             <div className={styles.card} key={i}>
-              <img src={espacio.img} alt={espacio.nombre} />
+              <img src={p.img} alt={p.titulo} />
               <div className={styles.cardInfo}>
-                <h3>{espacio.nombre}</h3>
-                <button>Reservar</button>
+                <h3>{p.titulo}</h3>
+                <p>{p.descripcion}</p>
+                <button onClick={() => navigate("/programas")}>Ver más</button>
               </div>
             </div>
           ))}
         </div>
       </section>
+
+      {/* 🏫 Espacios institucionales */}
+      <section className={styles.espaciosSection}>
+        <h2>Espacios Institucionales Disponibles</h2>
+        <p className={styles.espaciosIntro}>
+          Nuestra universidad cuenta con espacios académicos y tecnológicos
+          diseñados para la formación integral de los estudiantes. Estos
+          espacios fomentan la práctica, la investigación y la innovación.
+        </p>
+        <div className={styles.cards}>
+          {espacios.map((e, i) => (
+            <div className={styles.card} key={i}>
+              <img src={e.img} alt={e.nombre} />
+              <div className={styles.cardInfo}>
+                <h3>{e.nombre}</h3>
+                <p>{e.descripcion}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 📬 Footer */}
+      <footer className={styles.footer}>
+        <div>
+          <h3>Contáctanos</h3>
+          <p>Email: info@universidad.edu.co</p>
+          <p>Teléfono: (604) 123 4567</p>
+          <p>Dirección: Calle 73 #73-73, Medellín</p>
+        </div>
+        <div>
+          <p>© 2025 Universidad Tecnológica — Todos los derechos reservados</p>
+        </div>
+      </footer>
     </div>
   );
 };

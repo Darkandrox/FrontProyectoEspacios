@@ -1,71 +1,69 @@
-.registroContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #f2f2f2, #e0e7ff);
-}
-
-.registroBox {
-  background: #fff;
-  padding: 40px 30px;
+.contenedor {
+  width: 400px;
+  margin: 50px auto;
+  padding: 25px;
+  background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-  width: 370px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.titulo {
   text-align: center;
-  border: 1px solid #e0e0e0;
+  color: #333;
+  margin-bottom: 20px;
 }
 
-.logoPascual {
-  width: 120px;
-  margin-bottom: 18px;
-}
-
-.registroBox h2 {
-  margin-bottom: 18px;
-  color: #1a237e;
-  font-size: 1.5rem;
-}
-
-.inputGroup {
+.formulario {
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
-  text-align: left;
+  gap: 15px;
 }
 
-.inputGroup label {
-  font-size: 14px;
-  margin-bottom: 6px;
-  color: #333;
+.campo {
+  display: flex;
+  flex-direction: column;
 }
 
-.inputGroup input {
+.campo label {
+  margin-bottom: 5px;
+  color: #444;
+  font-weight: 500;
+}
+
+.campo input,
+.select {
   padding: 10px;
-  border: 1px solid #bdbdbd;
-  border-radius: 6px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   font-size: 15px;
 }
 
-.btnRegistro {
-  background: #1a237e;
-  color: #fff;
+.boton {
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
   border: none;
-  padding: 10px 0;
-  width: 100%;
-  border-radius: 6px;
-  font-size: 1rem;
-  margin-top: 10px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: 0.3s;
 }
 
-.btnRegistro:hover {
-  background: #3949ab;
+.boton:hover {
+  background-color: #45a049;
 }
 
-.errorMsg {
+.mensaje {
+  margin-top: 15px;
+  color: #2e7d32;
+  text-align: center;
+  font-weight: bold;
+}
+
+.error {
+  margin-top: 15px;
   color: #d32f2f;
-  font-size: 0.95rem;
-  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
 }
