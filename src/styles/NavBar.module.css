@@ -79,7 +79,7 @@
 
 /* Botones especiales */
 .btnLogin {
-  background-color: #d6001c;
+  background-color: #002049;
   color: white;
   border: none;
   font-weight: 600;
@@ -90,7 +90,7 @@
 }
 
 .btnLogin:hover {
-  background-color: #a80014;
+  background-color: #455c7b;
 }
 
 .btnLogout {
