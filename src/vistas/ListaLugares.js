@@ -225,26 +225,31 @@ const handleBooking = async () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        "Authorization": `Bearer ${localStorage.getItem("token")}` // 👈 token obligatorio
       },
       body: JSON.stringify(reserva),
     });
 
-    const data = await response.json();
+    // 🧩 Evita intentar leer JSON si el servidor responde vacío
+    let data = null;
+    try {
+      data = await response.json();
+    } catch {
+      data = {};
+    }
 
-    if (response.ok && data.reserva) {
-      // Construir el objeto de reserva para mostrar en la lista
+    if (response.ok) {
+      console.log("✅ Reserva creada:", data);
+
       const nuevaReserva = {
-        id: data.reserva.id,
-        space: data.reserva.espacio?.nombre || "Espacio desconocido",
-        date: data.reserva.fecha,
-        time: `${data.reserva.horaInicio} - ${data.reserva.horaFin}`,
+        id: data.reserva?.id || Date.now(),
+        space: data.reserva?.espacio?.nombre || selectedSpace.nombre,
+        date: data.reserva?.fecha || selectedDate,
+        time: `${data.reserva?.horaInicio || selectedTime} - ${data.reserva?.horaFin || selectedTimeEnd}`,
       };
 
-      // Actualiza el estado de reservas
       setBookings((prev) => [...prev, nuevaReserva]);
 
-      // Muestra mensaje de éxito
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 15000);
 
@@ -253,16 +258,16 @@ const handleBooking = async () => {
       setSelectedDate("");
       setSelectedTime("");
       setSelectedTimeEnd("");
+    } else if (response.status === 403) {
+      alert("⚠️ No tienes permiso para realizar esta acción. Inicia sesión nuevamente.");
     } else {
       alert(data.error || "Error desconocido al crear la reserva");
     }
   } catch (err) {
-    console.error("Error de conexión:", err);
-    alert("No se pudo conectar con el servidor");
+    console.error("❌ Error de conexión:", err);
+    alert("No se pudo conectar con el servidor.");
   }
 };
-
-
 
   const filteredSpaces = Object.entries(spaces).reduce((acc, [category, data]) => {
     const filtered = data.items.filter((item) =>

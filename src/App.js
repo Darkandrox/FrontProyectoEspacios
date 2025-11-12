@@ -8,6 +8,7 @@ import Nosotros from "./vistas/Nosotros"; // componente para la vista de nosotro
 import Contacto from "./vistas/Contacto"; // componente para la vista de contacto
 import Registro from "./vistas/Registro"; // componente para la vista de registro
 import VistaReservas from "./vistas/VistaReservas"; // componente para la vista de reservas (solo admin)
+import VistaReservasGeneral from "./vistas/VistaReservasGeneral"; // componente para la vista de reservas general (solo admin)
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/registro" element={<Registro/>} />
         <Route path="/vistareservas" element={<VistaReservas />} />
-      
+        <Route path="/vistareservasgeneral" element={<VistaReservasGeneral />} />
  
       </Routes>
     </Router>

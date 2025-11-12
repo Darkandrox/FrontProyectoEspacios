@@ -76,17 +76,24 @@ const Navbar = () => {
           <a onClick={() => navigate("/home")}>Inicio</a>
           <a onClick={() => navigate("/nosotros")}>Nosotros</a>
           <a onClick={() => navigate("/contacto")}>Contacto</a>
+          
 
           {/* ✅ Solo visible para administradores */}
           {userRole === "ROLE_ADMIN" && (
             <>
               <a onClick={() => navigate("/registro")}>Registro</a>
-              <a onClick={() => navigate("/vistareservas")}>BD</a>
+              <a onClick={() => navigate("/vistareservasgeneral")}>BD</a>
+            </>
+          )}
+
+          {userRole === "ROLE_USER" && (
+            <>
+              <a onClick={() => navigate("/vistareservas")}>Mis Reservas</a>
             </>
           )}
 
           {/* ✅ Solo visible para usuarios logueados */}
-          {isLoggedIn && <a onClick={() => navigate("/reservas")}>Reservas</a>}
+          {isLoggedIn && <a onClick={() => navigate("/reservas")}>Reservar</a>}
 
           {!isLoggedIn ? (
             <button onClick={handleLoginRedirect} className={StyleNav.btnLogin}>
