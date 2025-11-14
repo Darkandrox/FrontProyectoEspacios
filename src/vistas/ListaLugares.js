@@ -13,6 +13,7 @@ const UniversityBookingSystem = () => {
   const [expandedCategories, setExpandedCategories] = useState({});
   const [bookings, setBookings] = useState([]);
   const [showSuccess, setShowSuccess] = useState(false);
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   
 
@@ -206,7 +207,7 @@ const UniversityBookingSystem = () => {
 
 const handleBooking = async () => {
   const token = localStorage.getItem("token");
-  const API_URL = "http://localhost:8080/api/reservas";
+  const API_URL = `${API_BASE_URL}/api/reservas`;
 
   if (!selectedSpace || !selectedDate || !selectedTime || !selectedTimeEnd) {
     alert("Por favor, completa todos los campos antes de reservar.");
