@@ -9,6 +9,8 @@ import Contacto from "./vistas/Contacto"; // componente para la vista de contact
 import Registro from "./vistas/Registro"; // componente para la vista de registro
 import VistaReservas from "./vistas/VistaReservas"; // componente para la vista de reservas (solo admin)
 import VistaReservasGeneral from "./vistas/VistaReservasGeneral"; // componente para la vista de reservas general (solo admin)
+import ResetClave from "./vistas/ResetClave"; // componente para la vista de restablecimiento de contraseña
+
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
         <Route path="/registro" element={<Registro/>} />
         <Route path="/vistareservas" element={<VistaReservas />} />
         <Route path="/vistareservasgeneral" element={<VistaReservasGeneral />} />
+        <Route path="/reset-password" element={<ResetClave />} />
+        <Route path="/olvideclave" element={<OlvideClave />} />
  
       </Routes>
     </Router>

@@ -8,42 +8,60 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  try {
-    const response = await fetch("http://localhost:8080/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
-
-    if (!response.ok) {
-      throw new Error("Credenciales incorrectas");
+    // 🛑 RESTRICCIÓN DE DOMINIO DEL CORREO (FRONTEND)
+    const requiredDomain = "@pascualbravo.edu.co";
+    if (!email.toLowerCase().endsWith(requiredDomain)) {
+      setError(
+        `❌ Solo se permite iniciar sesión con correos del dominio ${requiredDomain}.`
+      );
+      return; // Detiene la ejecución si el dominio es incorrecto
     }
 
-    const data = await response.json();
+    // Limpia errores previos si la validación de dominio pasa
+    setError("");
 
-    // ✅ Guarda token y correo en localStorage
-    localStorage.setItem("token", data.token);
-    localStorage.setItem("userEmail", data.email);
+    try {
+      const response = await fetch("http://localhost:8080/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-    // (opcional) muestra el contenido guardado en consola
-    console.log("Inicio de sesión exitoso:", data);
+      if (!response.ok) {
+        // Intentar leer el error del backend si existe
+        const errorData = await response.json();
+        const errorMessage = errorData.error || "Credenciales incorrectas";
+        throw new Error(errorMessage);
+      }
 
-    navigate("/home");
-  } catch (error) {
-    setError(error.message);
-  }
-};
+      const data = await response.json();
 
-  
+      // ✅ Guarda token y correo en localStorage
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("userEmail", data.email);
+
+      // (opcional) muestra el contenido guardado en consola
+      console.log("Inicio de sesión exitoso:", data);
+
+      // 📢 SOLUCIÓN: Dispara manualmente el evento 'storage' para que el Navbar
+      // (u otros componentes que escuchen el evento) sepa que debe actualizarse.
+      window.dispatchEvent(new Event("storage"));
+
+      navigate("/home");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
   return (
     <div className={styles.loginContainer}>
       <form onSubmit={handleSubmit} className={styles.loginBox}>
         <h2>Iniciar Sesión</h2>
 
+        {/* Añadimos un estilo para que el mensaje de error sea más claro */}
         {error && <p className={styles.error}>{error}</p>}
 
         <div className={styles.inputGroup}>
@@ -56,7 +74,6 @@ const handleSubmit = async (e) => {
             required
           />
         </div>
-        
 
         <div className={styles.inputGroup}>
           <label htmlFor="password">Contraseña</label>
@@ -73,14 +90,12 @@ const handleSubmit = async (e) => {
           Iniciar sesión
         </button>
 
-          
         <p className={styles.forgotPassword}>
           <a href="olvidePass">¿Olvidaste tu contraseña?</a>
         </p>
       </form>
     </div>
   );
-  
 };
 
 export default Login;

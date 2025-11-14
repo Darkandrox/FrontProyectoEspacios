@@ -1,103 +1,57 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import axios from "axios";
 import styles from "../styles/OlvideClave.module.css";
 
-const ForgotPassword = () => {
+export default function OlvideClave() {
   const [email, setEmail] = useState("");
   const [mensaje, setMensaje] = useState("");
-  const [exito, setExito] = useState(false);
-  const [cargando, setCargando] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email.trim()) {
-      setMensaje("⚠️ Ingresa un correo válido");
-      setExito(false);
-      return;
-    }
-
-    setCargando(true);
-    setMensaje("");
-
     try {
-      // Llamada al backend (Spring Boot)
-      const response = await fetch(
-        `http://localhost:8080/api/auth/recuperar?email=${encodeURIComponent(email)}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-
-      const data = await response.text();
-
-      if (response.ok) {
-        setExito(true);
-        setMensaje(data);
-      } else {
-        setExito(false);
-        setMensaje(data || "❌ Error al enviar el correo de recuperación");
-      }
-    } catch (error) {
-      console.error("Error al recuperar clave:", error);
-      setExito(false);
-      setMensaje("❌ Error de conexión con el servidor");
-    } finally {
-      setCargando(false);
+      await axios.post("http://localhost:8080/api/auth/forgot-password", {
+        email,
+      });
+      setMensaje("✔ Se envió el correo de recuperación");
+    } catch (err) {
+      setMensaje("❌ Error enviando el correo");
     }
   };
 
   return (
     <div className={styles.forgotContainer}>
       <div className={styles.forgotBox}>
-        {mensaje && (
-          <div
-            className={`${styles.alert} ${
-              exito ? styles.success : styles.error
-            }`}
-          >
-            {mensaje}
-          </div>
-        )}
+        <h2>Recuperar contraseña</h2>
 
-        <h2>Recuperar Contraseña</h2>
         <p className={styles.textInfo}>
-          Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.
+          Ingresa tu correo electrónico y te enviaremos un enlace para
+          restablecer tu contraseña.
         </p>
 
         <form onSubmit={handleSubmit}>
           <div className={styles.inputGroup}>
-            <label htmlFor="email">Correo electrónico</label>
+            <label>Correo electrónico</label>
             <input
               type="email"
-              id="email"
-              name="email"
-              placeholder="Ingresa tu correo"
+              placeholder="example@correo.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              disabled={cargando}
             />
           </div>
 
-          <button
-            type="submit"
-            className={styles.btnRecover}
-            disabled={cargando}
-          >
-            {cargando ? "Enviando..." : "Enviar enlace"}
+          <button type="submit" className={styles.btnRecover}>
+            Enviar enlace
           </button>
         </form>
 
-        <p className={styles.backLogin}>
-          ¿Recordaste tu contraseña?{" "}
-          <a href="/login" className={styles.link}>
-            Inicia sesión aquí
-          </a>
-        </p>
+        {mensaje && <p className={styles.successContainer}>{mensaje}</p>}
+
+        <div className={styles.backLogin}>
+          <a href="/login">← Volver al inicio de sesión</a>
+        </div>
       </div>
     </div>
   );
-};
-
-export default ForgotPassword;
+}
