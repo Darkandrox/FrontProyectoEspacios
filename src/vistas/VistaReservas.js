@@ -6,8 +6,9 @@ export default function PanelReservas() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("token");
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-  // ✅ Cargar reservas del usuario autenticado
+  //  Cargar reservas del usuario autenticado
   const cargarReservas = async () => {
     try {
       setLoading(true);
@@ -33,7 +34,7 @@ export default function PanelReservas() {
     cargarReservas();
   }, []);
 
-  // ✅ Cancelar una reserva (sin eliminar)
+  //  Cancelar una reserva (sin eliminar)
   const cancelarReserva = async (id) => {
     if (!window.confirm("¿Seguro que deseas cancelar esta reserva?")) return;
 

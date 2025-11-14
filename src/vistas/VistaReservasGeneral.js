@@ -7,7 +7,7 @@ export default function PanelReservasAdmin() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("token");
-
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 
   // ✅ Manejar fechas del filtro

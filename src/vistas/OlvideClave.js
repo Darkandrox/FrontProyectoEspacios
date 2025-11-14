@@ -5,7 +5,7 @@ import styles from "../styles/OlvideClave.module.css";
 export default function OlvideClave() {
   const [email, setEmail] = useState("");
   const [mensaje, setMensaje] = useState("");
-
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
   const handleSubmit = async (e) => {
     e.preventDefault();
 

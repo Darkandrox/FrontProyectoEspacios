@@ -7,6 +7,7 @@ const ResetPassword = () => {
     const [mensaje, setMensaje] = useState("");
     const [token, setToken] = useState("");
     const [redirecting, setRedirecting] = useState(false); // Nuevo estado para controlar la redirección
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
     useEffect(() => {
         // Leer token de la URL
@@ -30,7 +31,7 @@ const ResetPassword = () => {
             });
 
             // 1. Mensaje de éxito
-            setMensaje("✅ Contraseña cambiada con éxito. Serás redirigido al inicio en 10 segundos...");
+            setMensaje(" Contraseña cambiada con éxito. Serás redirigido al inicio en 10 segundos...");
             setRedirecting(true); // Activar estado de redirección
 
             // 2. Redirección después de 5 segundos (5000 milisegundos)
