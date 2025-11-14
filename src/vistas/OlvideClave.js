@@ -6,11 +6,13 @@ export default function OlvideClave() {
   const [email, setEmail] = useState("");
   const [mensaje, setMensaje] = useState("");
   const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await axios.post("${API_BASE_URL}/api/auth/forgot-password", {
+      await axios.post(`${API_BASE_URL}/api/auth/forgot-password`, {
         email,
       });
       setMensaje("✔ Se envió el correo de recuperación");

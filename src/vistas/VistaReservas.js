@@ -14,7 +14,7 @@ export default function PanelReservas() {
       setLoading(true);
       setError("");
 
-      const response = await fetch("${API_BASE_URL}/api/reservas/mias", {
+      const response = await fetch(`${API_BASE_URL}/api/reservas/mias`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

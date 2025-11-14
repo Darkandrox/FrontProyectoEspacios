@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import StyleRegistro from "../styles/Registro.module.css";
 
 export default function RegistroUsuarios() {
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
@@ -13,8 +14,7 @@ export default function RegistroUsuarios() {
 
   const [mensaje, setMensaje] = useState("");
   const [error, setError] = useState("");
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
-
+  
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -26,8 +26,8 @@ const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
     try {
       const token = localStorage.getItem("token"); // Solo necesario si creas admin
-      const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
-      const response = await fetch("${API_BASE_URL}/api/auth/register", {
+      
+      const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

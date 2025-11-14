@@ -33,7 +33,7 @@ export default function PanelReservasAdmin() {
     setLoading(true);
     setError("");
     const response = await fetch(
-      "${API_BASE_URL}/api/reservas/admin/filtrar",
+      `${API_BASE_URL}/api/reservas/admin/filtrar`,
       {
         method: "POST",
         headers: {
