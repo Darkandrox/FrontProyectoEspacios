@@ -13,7 +13,7 @@ export default function PanelReservas() {
       setLoading(true);
       setError("");
 
-      const response = await fetch("http://localhost:8080/api/reservas/mias", {
+      const response = await fetch("${API_BASE_URL}/api/reservas/mias", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -39,7 +39,7 @@ export default function PanelReservas() {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/api/reservas/${id}/cancelar`,
+        `${API_BASE_URL}/api/reservas/${id}/cancelar`,
         {
           method: "PUT",
           headers: { Authorization: `Bearer ${token}` },

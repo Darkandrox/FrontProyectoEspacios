@@ -10,7 +10,7 @@ export default function OlvideClave() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:8080/api/auth/forgot-password", {
+      await axios.post("${API_BASE_URL}/api/auth/forgot-password", {
         email,
       });
       setMensaje("✔ Se envió el correo de recuperación");

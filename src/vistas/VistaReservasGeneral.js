@@ -33,7 +33,7 @@ export default function PanelReservasAdmin() {
     setLoading(true);
     setError("");
     const response = await fetch(
-      "http://localhost:8080/api/reservas/admin/filtrar",
+      "${API_BASE_URL}/api/reservas/admin/filtrar",
       {
         method: "POST",
         headers: {
@@ -70,7 +70,7 @@ export default function PanelReservasAdmin() {
     if (!window.confirm("¿Seguro que deseas cancelar esta reserva?")) return;
     try {
       const response = await fetch(
-        `http://localhost:8080/api/reservas/${id}/cancelar`,
+        `${API_BASE_URL}/api/reservas/${id}/cancelar`,
         {
           method: "PUT",
           headers: {
