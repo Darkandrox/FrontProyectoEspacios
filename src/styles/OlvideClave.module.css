@@ -9,13 +9,14 @@
   --color-error: #dc3545; /* Rojo para error */
 }
 
+/* Estilos Base (Escritorio / Centrado) */
 .forgotContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   background-color: var(--color-background);
-  padding: 20px;
+  padding: 20px; /* Asegura un pequeño margen en los bordes de la pantalla */
 }
 
 .forgotBox {
@@ -24,7 +25,7 @@
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 400px;
+  max-width: 400px; /* Controla el ancho máximo en pantallas grandes */
   text-align: center;
 }
 
@@ -125,15 +126,28 @@
   text-decoration: underline;
 }
 
-/* Media query para hacer el contenedor un poco más pequeño en móviles */
+/* ---------------------------------------------------- */
+/* RESPONSIVE: MEDIA QUERIES (MÓVILES)        */
+/* ---------------------------------------------------- */
 @media (max-width: 500px) {
-  .forgotBox {
-    padding: 30px 20px;
-    margin: 10px;
-    box-shadow: none; /* Sin sombra en móvil para un diseño "full screen" */
-  }
+    /* Optimización del contenedor para evitar el doble margen */
+    .forgotContainer {
+        padding: 0; /* Elimina el padding exterior en móvil */
+    }
+    
+    .forgotBox {
+        /* Se adapta al 100% gracias a width: 100% y al padding 0 del container */
+        padding: 30px 20px;
+        margin: 0; /* Elimina el margen por si acaso */
+        border-radius: 0; /* Opcional: Para un look de ancho completo */
+        box-shadow: none; /* Sin sombra en móvil para un diseño más limpio */
+    }
 
-  .forgotBox h2 {
-    font-size: 1.6rem;
-  }
+    .forgotBox h2 {
+        font-size: 1.6rem;
+    }
+    
+    .textInfo {
+        margin-bottom: 20px; /* Reducir margen */
+    }
 }

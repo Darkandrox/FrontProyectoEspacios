@@ -41,7 +41,8 @@
 /* ====== Tarjetas del equipo ====== */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* Excelente para responsive: se ajusta automáticamente */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
   gap: 30px;
   justify-items: center;
 }
@@ -51,8 +52,8 @@
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  width: 300px;        /* 🔹 Tamaño uniforme */
-  height: 420px;       /* 🔹 Altura igual para todas */
+  width: 300px; /* 🔹 Ancho fijo para escritorio */
+  height: 420px; /* 🔹 Altura fija para escritorio */
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -65,7 +66,7 @@
 
 .card img {
   width: 100%;
-  height: 250px;       /* 🔹 Imagenes proporcionadas */
+  height: 250px; /* 🔹 Altura fija de la imagen en escritorio */
   object-fit: cover;
 }
 
@@ -88,7 +89,7 @@
   color: #555;
 }
 
-/* ====== Formulario de contacto (si lo usas también) ====== */
+/* ====== Formulario de contacto ====== */
 .contactForm {
   max-width: 1100px;
   margin: 40px auto;
@@ -109,6 +110,9 @@
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  /* 💡 Ajuste para que el formulario no ocupe todo el ancho en desktop */
+  max-width: 600px;
+  margin: 0 auto; 
 }
 
 .contactForm input,
@@ -139,26 +143,72 @@
   background-color: #a80014;
 }
 
-/* ====== Responsive ====== */
-@media (max-width: 600px) {
+/* ---------------------------------------------------- */
+/* RESPONSIVE: MEDIA QUERIES (TABLETAS Y MÓVILES)        */
+/* ---------------------------------------------------- */
+
+/* Media Query para Tabletas y Móviles Grandes */
+@media (max-width: 768px) {
+  
+  /* Banner: Reducir padding */
   .banner {
-    padding: 70px 15px;
+    padding: 50px 15px;
   }
-
+  
   .bannerContent h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
-
+  
   .bannerContent p {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
-  .card {
-    width: 90%;
-    height: auto;
+  /* Team Section: Reducir margen superior/inferior */
+  .team, .contactForm {
+      margin: 30px auto;
   }
+  
+  .team h2, .contactForm h2 {
+      font-size: 1.8rem;
+  }
+  
+  /* Contact Form: Asegurar que el padding se ajuste */
+  .contactForm form {
+      padding: 20px;
+  }
+}
 
-  .card img {
-    height: 200px;
-  }
+
+/* ---------------------------------------------------- */
+/* RESPONSIVE: MEDIA QUERIES (MÓVILES PEQUEÑOS)         */
+/* ---------------------------------------------------- */
+
+@media (max-width: 480px) {
+    
+    /* Banner: Ajustar más el tamaño de fuente */
+    .bannerContent h1 {
+      font-size: 1.8rem;
+    }
+
+    .bannerContent p {
+      font-size: 1rem;
+    }
+
+    /* Tarjetas: Ajuste crucial para móviles */
+    .card {
+        /* Permite que ocupe todo el ancho del contenedor grid */
+        width: 100%; 
+        /* La altura ya no es fija, se ajusta al contenido (auto) */
+        height: auto; 
+    }
+    
+    /* Imagen: Evitar que sea demasiado alta */
+    .card img {
+        height: 180px; /* Reducir la altura de la imagen en móvil */
+    }
+    
+    /* Contenedores: Reducir padding para usar mejor el espacio */
+    .team, .contactForm {
+        padding: 0 15px; 
+    }
 }

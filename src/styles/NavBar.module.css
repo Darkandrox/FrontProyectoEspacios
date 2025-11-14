@@ -1,5 +1,3 @@
-/* NavBar.module.css */
-
 /* Contenedor del header */
 .headerContainer {
   background-color: #ffffff;
@@ -28,37 +26,62 @@
   transform: scale(1.05);
 }
 
-/* Botón menú móvil */
+/* Botón menú móvil (Visible por defecto) */
 .menuToggle {
   background: none;
   border: none;
   font-size: 26px;
   cursor: pointer;
   color: #333;
-  display: block;
+  /* Display block por defecto, se oculta en escritorio */
+  display: block; 
 }
 
-/* Menú de navegación */
+/* Contenedor de enlaces y botones (Se necesita para agrupar todo en escritorio) */
+.navActions {
+  display: flex; /* Usamos flexbox para alinear enlaces y botones en escritorio */
+  align-items: center;
+  /* Oculto por defecto en móvil, mostrado en .navMenuOpen */
+  display: none; 
+}
+
+/* Menú de navegación (solo enlaces) */
 .navMenu {
-  display: none;
-  flex-direction: column;
-  background-color: white;
-  width: 100%;
+  display: flex;
+  flex-direction: column; /* Apilado en móvil */
+  gap: 5px; /* Espacio entre enlaces en móvil */
   text-align: center;
   padding: 10px 0;
   border-top: 1px solid #ddd;
-  transition: max-height 0.3s ease;
 }
 
-.navMenuOpen {
+/* Contenedor de botones (para apilarlos en móvil, si aplica) */
+.navButtons {
   display: flex;
+  flex-direction: column; /* Apilado en móvil */
+  gap: 10px;
+  padding: 10px 20px 0; /* Relleno para separarlo de los enlaces */
 }
 
-/* Título del menú */
+/* Abrir menú en móvil */
+.navMenuOpen .navActions {
+  /* Al abrir el menú, mostramos las acciones (enlaces + botones) */
+  display: flex;
+  flex-direction: column;
+  position: absolute; /* Coloca el menú bajo el header */
+  top: 55px; /* Ajusta según la altura de tu header */
+  left: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  z-index: 998;
+}
+
+/* Título del menú (Visible solo en móvil) */
 .h1nav {
   font-size: 1.4rem;
   color: #d6001c;
-  margin-bottom: 10px;
+  margin: 10px 0;
   font-weight: bold;
 }
 
@@ -77,16 +100,20 @@
   background-color: #f7f7f7;
 }
 
-/* Botones especiales */
-.btnLogin {
-  background-color: #002049;
-  color: white;
+/* Botones */
+.btnLogin, .btnLogout {
+  width: 100%; /* Ocupa todo el ancho en móvil */
+  padding: 10px 15px;
   border: none;
   font-weight: 600;
   border-radius: 8px;
-  padding: 10px 15px;
   cursor: pointer;
   transition: background 0.3s ease;
+}
+
+.btnLogin {
+  background-color: #002049;
+  color: white;
 }
 
 .btnLogin:hover {
@@ -96,38 +123,55 @@
 .btnLogout {
   background-color: #f2f2f2;
   color: #333;
-  border: none;
-  font-weight: 600;
-  border-radius: 8px;
-  padding: 10px 15px;
-  cursor: pointer;
-  transition: background 0.3s ease;
 }
 
 .btnLogout:hover {
   background-color: #e0e0e0;
 }
 
-/* Responsive para escritorio */
+
+
 @media (min-width: 769px) {
+  
+  /* Ocultar el botón del menú móvil */
   .menuToggle {
     display: none;
   }
 
+
+  .navActions {
+    display: flex; 
+    flex-direction: row; 
+    position: static; 
+    background: none;
+    box-shadow: none;
+    width: auto;
+    z-index: auto;
+  }
+
+  /* Menú de navegación (Enlaces) */
   .navMenu {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row; /* Horizontal */
     border-top: none;
     padding: 0;
+    gap: 15px; /* Espacio horizontal entre enlaces */
+    margin-right: 20px; /* Separación entre enlaces y botones */
   }
 
-  .navMenu a {
-    margin: 0 15px;
+  /* Contenedor de botones: De apilado a horizontal */
+  .navButtons {
+    flex-direction: row; /* Horizontal */
+    padding: 0;
   }
-
+  
+  /* Eliminar el título visible en móvil */
   .h1nav {
     display: none;
+  }
+  
+  /* Los botones ya no necesitan ocupar el 100% */
+  .btnLogin, .btnLogout {
+    width: auto; 
   }
 }

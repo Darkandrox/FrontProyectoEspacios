@@ -1,21 +1,22 @@
+/* Estilos Base (Escritorio / Centrado) */
 .resetContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background-image:url('../assets/banner1.jpg');
-    background-size: cover; 
-    background-repeat: no-repeat; 
-    background-position: center; 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
 }
 
 .resetBox {
   background: #fff;
-  padding: 2rem 2.5rem;
+  padding: 2rem 2.5rem; /* Relleno grande en escritorio */
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
   width: 100%;
-  max-width: 380px;
+  max-width: 380px; /* Ancho máximo */
   text-align: center;
   animation: fadeIn 0.6s ease-in-out;
 }
@@ -93,4 +94,26 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@media (max-width: 450px) {
+    
+    /* 1. Contenedor principal: Asegura que no haya padding extra que interfiera con el 100% de la caja */
+    .resetContainer {
+        padding: 0; 
+    }
+    
+    /* 2. Caja de Reseteo: Ajuste clave para móviles */
+    .resetBox {
+        width: 100%; /* Ocupa todo el ancho */
+        padding: 1.5rem 1rem; /* Reducir padding interno */
+        border-radius: 0; /* Opcional: Look de ancho completo en móvil */
+        box-shadow: none; /* Eliminar la sombra para un diseño más limpio en pantalla completa */
+        margin: 0; /* Eliminar margen si lo hubiera */
+    }
+
+    /* 3. Título: Reducir fuente */
+    .resetBox h2 {
+        font-size: 1.4rem;
+    }
 }

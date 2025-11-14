@@ -1,12 +1,13 @@
+/* Estilos Base (Escritorio / Tabletas Grandes) */
 .loginContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   background-image:url('../assets/Pascual3.jpg');
-    background-size: cover; 
-    background-repeat: no-repeat; 
-    background-position: center; 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
 }
 
 .loginBox {
@@ -14,7 +15,7 @@
   padding: 40px 30px;
   border-radius: 12px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
-  width: 350px;
+  width: 350px; /* Ancho fijo para escritorio */
   text-align: center;
   border: 1px solid #2a2a2a;
 }
@@ -51,7 +52,6 @@
 .inputGroup input:focus {
   border-color: #007bff;
   box-shadow: 0 0 6px rgba(21, 22, 22, 0.5);
-  
 }
 
 .btnLogin {
@@ -86,4 +86,26 @@
 
 .registerText a:hover {
   text-decoration: underline;
+}
+
+
+@media (max-width: 450px) {
+    
+    /* 1. Contenedor de Login: Reduce el padding exterior */
+    .loginContainer {
+        padding: 15px; /* Evita que el contenido toque los bordes */
+    }
+
+    /* 2. Caja de Login: Ajuste principal para móviles */
+    .loginBox {
+        width: 100%; /* Ocupa todo el ancho disponible */
+        max-width: 350px; /* Mantiene un límite superior */
+        padding: 30px 20px; /* Reduce el padding interno */
+        margin: 20px; /* Asegura un margen alrededor para que no se pegue si no hay padding en container */
+    }
+
+    /* 3. Título: Reducir tamaño de fuente si es necesario */
+    .loginBox h2 {
+        font-size: 1.4rem;
+    }
 }

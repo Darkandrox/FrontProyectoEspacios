@@ -1,3 +1,4 @@
+/* Estilos Base (Escritorio) */
 .contenedor {
   padding: 30px;
   max-width: 900px;
@@ -17,13 +18,21 @@
 .filtro {
   text-align: center;
   margin-bottom: 20px;
+  /* Usamos Flexbox para centrar el input y el botón en una línea, 
+     lo cual es útil para la organización en desktop */
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Permite que se envuelva en pantallas pequeñas */
+  gap: 10px;
 }
 
 .inputFecha {
-  margin: 10px;
+  /* margin: 10px; */ /* Eliminado el margen para usar gap en el contenedor filtro */
   padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid #ccc;
+  max-width: 180px; /* Limita el ancho del input en desktop */
 }
 
 .listaFechas {
@@ -41,6 +50,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  white-space: nowrap; /* Evita que la fecha se rompa */
 }
 
 .btnEliminarFecha {
@@ -67,12 +77,15 @@
   background: #0056b3;
 }
 
+/* 🔥 ESTILO CLAVE PARA RESPONSIVIDAD DE TABLAS */
 .tablaContenedor {
-  overflow-x: auto;
+  overflow-x: auto; /* Permite el scroll horizontal en dispositivos estrechos */
+  width: 100%;
 }
 
 .tabla {
   width: 100%;
+  min-width: 600px; /* Asegura que la tabla tenga un ancho mínimo para que overflow-x funcione */
   border-collapse: collapse;
 }
 
@@ -81,6 +94,7 @@
   border: 1px solid #ddd;
   padding: 10px;
   text-align: center;
+  white-space: nowrap; /* Evita saltos de línea innecesarios en celdas */
 }
 
 .tabla th {
@@ -109,4 +123,53 @@
 .sinResultados {
   text-align: center;
   color: #555;
+}
+
+/* ---------------------------------------------------- */
+/* RESPONSIVE: MEDIA QUERIES (MÓVILES)        */
+/* ---------------------------------------------------- */
+
+@media (max-width: 768px) {
+    
+    /* Contenedor principal: Ajuste de padding y eliminación de sombra en móvil */
+    .contenedor {
+        padding: 20px 15px;
+        margin: 20px 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.08); /* Sombra más sutil */
+    }
+
+    /* Título: Reducir tamaño de fuente */
+    .titulo {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    
+    /* Filtro: Asegurar que el botón y el input se apilen o usen todo el ancho */
+    .filtro {
+        flex-direction: column; /* Apila los elementos (input, botón, lista) */
+        gap: 15px;
+    }
+
+    .inputFecha {
+        width: 100%; /* Ocupa todo el ancho */
+        max-width: 100%;
+    }
+    
+    .btnFiltrar {
+        width: 100%;
+    }
+    
+    /* Lista de fechas: Asegurar que no desborde */
+    .listaFechas {
+        justify-content: flex-start; /* Alinea a la izquierda en lugar de centrar */
+        padding: 0 5px;
+    }
+    
+    /* Tabla: Asegurar la legibilidad de la celda */
+    .tabla th,
+    .tabla td {
+        padding: 8px 6px; /* Menos padding en celdas */
+        font-size: 0.85rem;
+    }
 }

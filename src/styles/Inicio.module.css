@@ -1,3 +1,4 @@
+/* Estilos Base (Escritorio / Tabletas Grandes) */
 .carousel img {
   height: 75vh;
   object-fit: cover;
@@ -26,8 +27,10 @@
   margin-top: 2rem;
 }
 
+/* Modificación Clave: Asegurar que los contenedores de Misión/Visión 
+   ocupen la mitad del espacio en escritorio */
 .misionVision div {
-  flex: 1 1 45%;
+  flex: 1 1 45%; 
   background: white;
   border-radius: 10px;
   padding: 1.5rem;
@@ -50,8 +53,10 @@
   gap: 2rem;
 }
 
+/* Modificación Clave: La tarjeta ahora puede adaptarse un poco mejor */
 .card {
-  width: 300px;
+  width: 300px; 
+  max-width: 100%; /* Asegura que no desborde en móviles */
   background: #ffffff;
   border-radius: 12px;
   overflow: hidden;
@@ -96,4 +101,46 @@
   max-width: 800px;
   margin: 0 auto 2rem;
   color: #444;
+}
+
+
+@media (max-width: 768px) {
+  
+  /* 1. Carrusel: Reducir altura para no ocupar toda la pantalla */
+  .carousel img {
+    height: 50vh; /* Se reduce la altura del carrusel en móviles */
+  }
+
+  /* 2. Cabecera (Caption): Ajustar el tamaño del texto */
+  .caption h3 {
+    font-size: 1.5rem; /* El título es más pequeño */
+  }
+  
+  /* 3. Padding general: Ajustar el relleno */
+  .infoSection,
+  .featuredPrograms,
+  .espaciosSection {
+    padding: 2rem 1rem; /* Menos relleno en los laterales */
+  }
+
+  /* 4. Misión/Visión: Apilamiento vertical */
+  .misionVision {
+    flex-direction: column; /* Apila los elementos verticalmente */
+    margin-top: 1rem;
+  }
+
+  .misionVision div {
+    flex: 1 1 100%; /* Hace que cada div ocupe todo el ancho */
+    margin: 0.5rem 0; /* Más margen vertical */
+  }
+
+  /* 5. Tarjetas: Adaptación al 100% de ancho */
+  .card {
+    width: 100%; /* Ocupa todo el ancho disponible para ser más visible */
+  }
+  
+  /* 6. Footer: Podrías reducir el padding si fuera necesario, aunque 2rem es decente */
+  .footer {
+    padding: 1.5rem 1rem;
+  }
 }
