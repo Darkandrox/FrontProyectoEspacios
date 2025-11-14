@@ -23,7 +23,6 @@ function App() {
         <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="/reservas" element={<ListaLugares />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/olvidePass" element={<OlvideClave />} />
         <Route path="/home" element={<Inicio />} />
         <Route path="/nosotros" element={<Nosotros />} />
         <Route path="/contacto" element={<Contacto />} />
