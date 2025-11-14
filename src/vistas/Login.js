@@ -92,7 +92,7 @@ const Login = () => {
         </button>
 
         <p className={styles.forgotPassword}>
-          <a href="olvidePass">¿Olvidaste tu contraseña?</a>
+          <a href="olvideclave">¿Olvidaste tu contraseña?</a>
         </p>
       </form>
     </div>
