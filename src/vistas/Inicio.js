@@ -11,7 +11,7 @@ const Inicio = () => {
 
   const programas = [
     {
-      titulo: "Ingeniería en Sistemas",
+      titulo: "Ingeniería de Sotfware",
       descripcion:
         "Formamos profesionales con enfoque en desarrollo de software, redes y ciberseguridad.",
       img: "https://images.unsplash.com/photo-1581091215367-59ab6c2e9b1d",
@@ -131,7 +131,7 @@ const Inicio = () => {
               <div className={styles.cardInfo}>
                 <h3>{p.titulo}</h3>
                 <p>{p.descripcion}</p>
-                <button onClick={() => navigate("/programas")}>Ver más</button>
+                <button onClick={() => navigate("/https://pascualbravo.edu.co/facultades/facultad-de-ingenieria/programas/ingenieria-de-software/")}>Ver más</button>
               </div>
             </div>
           ))}
