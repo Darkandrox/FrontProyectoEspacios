@@ -4,6 +4,10 @@ import banner1 from "../assets/banner1.jpg";
 import banner2 from "../assets/banner2.jpg";
 import banner3 from "../assets/Pascual2.jpg";
 import styles from "../styles/Inicio.module.css";
+import SotwareImg from "../assets/IngeSotf.png";
+import ElectricaImg from "../assets/IngeElectr.png";
+import MaterialesImg from "../assets/IngeMater.png";
+import LaboratorioImg from "../assets/labrobotica.jpg";
 import { useNavigate } from "react-router-dom";
 
 const Inicio = () => {
@@ -13,20 +17,23 @@ const Inicio = () => {
     {
       titulo: "Ingeniería de Sotfware",
       descripcion:
-        "Formamos profesionales con enfoque en desarrollo de software, redes y ciberseguridad.",
-      img: "https://images.unsplash.com/photo-1581091215367-59ab6c2e9b1d",
+        "Formamos profesionales con enfoque en desarrollo de software, redes y ciberseguridad para su uso en la nueva digital que llega con grandes retos.",
+      img: SotwareImg,
+      link: "https://pascualbravo.edu.co/facultades/facultad-de-ingenieria/programas/ingenieria-de-software/"
+    },
+    {
+      titulo: "Ingeniería de Materiales",
+      descripcion:
+        "Propone soluciones a problemáticas que se puedan abordar desde áreas de trabajo como la producción, la electrónica, la electricidad, entre otras.",
+      img: MaterialesImg, 
+      link: "https://pascualbravo.edu.co/facultades/facultad-de-ingenieria/programas/ingenieria-materiales/"
     },
     {
       titulo: "Ingeniería Electrónica",
       descripcion:
-        "Aprende sobre automatización, control y diseño de sistemas inteligentes.",
-      img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
-    },
-    {
-      titulo: "Ingeniería Mecatrónica",
-      descripcion:
-        "Integra mecánica, electrónica y programación en proyectos de robótica avanzada.",
-      img: "https://images.unsplash.com/photo-1554475901-4538ddfbccc2",
+        "Integra conocimiento teórico y práctico para un desarrollo de habilidades que permitan su aplicación en el sector eléctrico.",
+      img: ElectricaImg,
+      link: "https://pascualbravo.edu.co/facultades/facultad-de-ingenieria/programas/ingenieria-electrica/"
     },
   ];
 
@@ -41,7 +48,7 @@ const Inicio = () => {
       nombre: "Laboratorio de Robótica",
       descripcion:
         "Equipado con brazos robóticos, sensores y plataformas de automatización para prácticas de control y programación.",
-      img: "https://images.unsplash.com/photo-1581092580495-4c8e1dba90f6",
+      img: LaboratorioImg,
     },
     {
       nombre: "Sala de Innovación",
@@ -123,20 +130,33 @@ const Inicio = () => {
 
       {/* 💻 Programas destacados */}
       <section className={styles.featuredPrograms}>
-        <h2>Programas Destacados</h2>
-        <div className={styles.cards}>
-          {programas.map((p, i) => (
-            <div className={styles.card} key={i}>
-              <img src={p.img} alt={p.titulo} />
-              <div className={styles.cardInfo}>
-                <h3>{p.titulo}</h3>
-                <p>{p.descripcion}</p>
-                <button onClick={() => navigate("/https://pascualbravo.edu.co/facultades/facultad-de-ingenieria/programas/ingenieria-de-software/")}>Ver más</button>
-              </div>
-            </div>
-          ))}
+        <h2>Nuestra Oferta Académica Destacada</h2>
+          <p className={styles.subtitle}>
+          Explora los programas que impulsan tu formación profesional.
+          </p>
+          
+          <div className={styles.cards}>
+      {programas.map((p, i) => (
+        <div className={styles.card} key={i}>
+          <img src={p.img} alt={p.titulo} />
+          <div className={styles.cardInfo}>
+            <h3>{p.titulo}</h3>
+            <p>{p.descripcion}</p>
+
+          <a
+            href={p.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button>Ver más</button>
+          </a>
         </div>
-      </section>
+      </div>
+        ))}
+      </div>
+     </section>
+
+
 
       {/* 🏫 Espacios institucionales */}
       <section className={styles.espaciosSection}>
