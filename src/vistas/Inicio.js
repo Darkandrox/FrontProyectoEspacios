@@ -70,7 +70,7 @@ const Inicio = () => {
           />
           <Carousel.Caption className={styles.caption}>
             <h3>Concurso de Robótica</h3>
-            <p>23 y 24 de septiembre en Pascual Bravo.</p>
+            <p>23 y 28 de septiembre en Pascual Bravo.</p>
           </Carousel.Caption>
         </Carousel.Item>
 
