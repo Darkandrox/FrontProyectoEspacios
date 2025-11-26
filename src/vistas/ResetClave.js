@@ -20,7 +20,7 @@ const ResetPassword = () => {
         e.preventDefault();
 
         if (password !== confirm) {
-            setMensaje("❌ Las contraseñas no coinciden");
+            setMensaje(" Las contraseñas no coinciden");
             return;
         }
 
@@ -42,7 +42,7 @@ const ResetPassword = () => {
         } catch (error) {
             console.error(error);
             if (!redirecting) {
-                setMensaje("❌ Error: el token no es válido o ya expiró.");
+                setMensaje(" Error: el token no es válido o ya expiró.");
             }
         }
     };
@@ -51,7 +51,7 @@ const ResetPassword = () => {
         <div style={styles.container}>
             <h2>Restablecer contraseña</h2>
 
-            {mensaje && <p style={{...styles.message, color: mensaje.startsWith('✅') ? 'green' : 'red'}}>{mensaje}</p>}
+            {mensaje && <p style={{...styles.message, color: mensaje.startsWith('') ? 'green' : 'red'}}>{mensaje}</p>}
 
             {/* Ocultar el formulario si la redirección está en curso */}
             {!redirecting && (

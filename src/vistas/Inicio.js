@@ -60,7 +60,7 @@ const Inicio = () => {
 
   return (
     <div>
-      {/* 🟦 Banner principal */}
+      {/* Banner principal */}
       <Carousel fade interval={4000} className={styles.carousel}>
         <Carousel.Item>
           <img
@@ -99,7 +99,7 @@ const Inicio = () => {
         </Carousel.Item>
       </Carousel>
 
-      {/* 🧠 Misión y visión */}
+      {/* Misión y visión */}
       <section className={styles.infoSection}>
         <div className={styles.infoContainer}>
           <h2>Bienvenido a la Facultad de Ingeniería</h2>
@@ -128,7 +128,7 @@ const Inicio = () => {
         </div>
       </section>
 
-      {/* 💻 Programas destacados */}
+      {/* Programas destacados */}
       <section className={styles.featuredPrograms}>
         <h2>Nuestra Oferta Académica Destacada</h2>
           <p className={styles.subtitle}>
@@ -158,7 +158,7 @@ const Inicio = () => {
 
 
 
-      {/* 🏫 Espacios institucionales */}
+      {/* Espacios institucionales */}
       <section className={styles.espaciosSection}>
         <h2>Espacios Institucionales Disponibles</h2>
         <p className={styles.espaciosIntro}>
@@ -179,7 +179,7 @@ const Inicio = () => {
         </div>
       </section>
 
-      {/* 📬 Footer */}
+      {/* Footer */}
       <footer className={styles.footer}>
         <div>
           <h3>Contáctanos</h3>

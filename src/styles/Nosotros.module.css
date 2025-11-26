@@ -52,8 +52,8 @@
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  width: 300px; /* 🔹 Ancho fijo para escritorio */
-  height: 420px; /* 🔹 Altura fija para escritorio */
+  width: 300px; /* Ancho fijo para escritorio */
+  height: 420px; /* Altura fija para escritorio */
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -66,7 +66,7 @@
 
 .card img {
   width: 100%;
-  height: 250px; /* 🔹 Altura fija de la imagen en escritorio */
+  height: 250px; /* Altura fija de la imagen en escritorio */
   object-fit: cover;
 }
 
@@ -110,7 +110,7 @@
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  /* 💡 Ajuste para que el formulario no ocupe todo el ancho en desktop */
+  /* Ajuste para que el formulario no ocupe todo el ancho en desktop */
   max-width: 600px;
   margin: 0 auto; 
 }

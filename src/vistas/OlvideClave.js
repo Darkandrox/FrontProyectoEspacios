@@ -15,9 +15,9 @@ export default function OlvideClave() {
       await axios.post(`${API_BASE_URL}/api/auth/forgot-password`, {
         email,
       });
-      setMensaje("✔ Se envió el correo de recuperación");
+      setMensaje(" Se envió el correo de recuperación");
     } catch (err) {
-      setMensaje("❌ Error enviando el correo");
+      setMensaje(" Error enviando el correo");
     }
   };
 

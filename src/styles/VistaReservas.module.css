@@ -77,7 +77,7 @@
   background: #0056b3;
 }
 
-/* 🔥 ESTILO CLAVE PARA RESPONSIVIDAD DE TABLAS */
+/* ESTILO CLAVE PARA RESPONSIVIDAD DE TABLAS */
 .tablaContenedor {
   overflow-x: auto; /* Permite el scroll horizontal en dispositivos estrechos */
   width: 100%;

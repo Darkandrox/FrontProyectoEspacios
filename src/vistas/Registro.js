@@ -41,9 +41,9 @@ export default function RegistroUsuarios() {
       const data = await response.json();
 
       if (response.ok) {
-        setMensaje(`✅ ${data.mensaje}`);
+        setMensaje(` ${data.mensaje}`);
       } else {
-        setError(`❌ ${data.error}`);
+        setError(` ${data.error}`);
       }
     } catch (err) {
       setError("Error al conectar con el servidor");

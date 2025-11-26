@@ -8,7 +8,7 @@ const UniversityBookingSystem = () => {
   const [selectedSpace, setSelectedSpace] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
-  const [selectedTimeEnd, setSelectedTimeEnd] = useState(""); // ✅ agregado
+  const [selectedTimeEnd, setSelectedTimeEnd] = useState(""); 
   const [searchTerm, setSearchTerm] = useState("");
   const [expandedCategories, setExpandedCategories] = useState({});
   const [bookings, setBookings] = useState([]);
@@ -20,7 +20,6 @@ const UniversityBookingSystem = () => {
 
   const spaces = {
     'Espacios Deportivos': {
-    icon: '⚽',
     items: [
       { id: 1, block: '20', name: 'Cancha de Fútbol - Campo Principal', capacity: '22 jugadores', room: 'Exterior' },
       { id: 2, block: '20', name: 'Cancha de Fútbol - Campo de Entrenamiento', capacity: '14 jugadores', room: 'Exterior' },
@@ -32,7 +31,6 @@ const UniversityBookingSystem = () => {
     ]
   },
   'Laboratorios de Sistemas Digitales': {
-    icon: '💻',
     items: [
       { id: 8, block: '15', name: 'Lab. de Logística - Aula 101', capacity: '30 personas', room: '101' },
       { id: 9, block: '15', name: 'Lab. de Logística - Aula 102', capacity: '28 personas', room: '102' },
@@ -54,7 +52,6 @@ const UniversityBookingSystem = () => {
     ]
   },
   'Laboratorios de Producción': {
-    icon: '🏭',
     items: [
       { id: 25, block: '13', name: 'Lab. de Síntesis y Preparación - Aula 601', capacity: '25 personas', room: '601' },
       { id: 26, block: '13', name: 'Lab. de Síntesis y Preparación - Aula 602', capacity: '24 personas', room: '602' },
@@ -70,7 +67,6 @@ const UniversityBookingSystem = () => {
     ]
   },
   'Laboratorios de Mecánica': {
-    icon: '⚙️',
     items: [
       { id: 36, block: '13', name: 'Lab. Caracterización de Materiales - Aula 605', capacity: '20 personas', room: '605' },
       { id: 37, block: '13', name: 'Lab. Caracterización de Materiales - Aula 606', capacity: '18 personas', room: '606' },
@@ -100,7 +96,6 @@ const UniversityBookingSystem = () => {
     ]
     },
     'Laboratorios de Eléctrica': {
-  icon: '⚡',
   items: [
     { id: 61, block: '10', name: 'Lab. de Sistemas Energéticos - Aula 1101', capacity: '30 personas', room: '1101' },
     { id: 62, block: '10', name: 'Lab. de Sistemas Energéticos - Aula 1102', capacity: '28 personas', room: '1102' },
@@ -122,7 +117,6 @@ const UniversityBookingSystem = () => {
 },
 
 'Laboratorios de Diseño': {
-  icon: '🎨',
   items: [
     { id: 77, block: '13', name: 'Lab. de Patronaje y Confección - Aula 611', capacity: '25 personas', room: '611' },
     { id: 78, block: '13', name: 'Lab. de Patronaje y Confección - Aula 612', capacity: '24 personas', room: '612' },
@@ -138,7 +132,6 @@ const UniversityBookingSystem = () => {
 },
 
 'Salones y Aulas': {
-  icon: '📚',
   items: [
     { id: 87, block: '1', name: 'Salón - Aula 101', capacity: '40 personas', room: '101' },
     { id: 88, block: '1', name: 'Salón - Aula 102', capacity: '38 personas', room: '102' },
@@ -176,7 +169,6 @@ const UniversityBookingSystem = () => {
 },
 
 'Salas Inteligentes': {
-  icon: '🖥️',
   items: [
     { id: 119, block: '1', name: 'Sala Inteligente - Aula 106', capacity: '50 personas', room: '106' },
     { id: 120, block: '1', name: 'Sala Inteligente - Aula 107', capacity: '45 personas', room: '107' },
@@ -226,12 +218,12 @@ const handleBooking = async () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("token")}` // 👈 token obligatorio
+        "Authorization": `Bearer ${localStorage.getItem("token")}` 
       },
       body: JSON.stringify(reserva),
     });
 
-    // 🧩 Evita intentar leer JSON si el servidor responde vacío
+    // Evita intentar leer JSON si el servidor responde vacío
     let data = null;
     try {
       data = await response.json();
@@ -240,7 +232,7 @@ const handleBooking = async () => {
     }
 
     if (response.ok) {
-      console.log("✅ Reserva creada:", data);
+     // console.log("Reserva creada:", data);
 
       const nuevaReserva = {
         id: data.reserva?.id || Date.now(),
@@ -260,12 +252,12 @@ const handleBooking = async () => {
       setSelectedTime("");
       setSelectedTimeEnd("");
     } else if (response.status === 403) {
-      alert("⚠️ No tienes permiso para realizar esta acción. Inicia sesión nuevamente.");
+      alert("No tienes permiso para realizar esta acción. Inicia sesión nuevamente.");
     } else {
       alert(data.error || "Error desconocido al crear la reserva");
     }
   } catch (err) {
-    console.error("❌ Error de conexión:", err);
+    console.error("Error de conexión:", err);
     alert("No se pudo conectar con el servidor.");
   }
 };

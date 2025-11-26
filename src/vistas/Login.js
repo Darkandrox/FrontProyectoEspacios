@@ -12,11 +12,11 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // 🛑 RESTRICCIÓN DE DOMINIO DEL CORREO (FRONTEND)
+    // RESTRICCIÓN DE DOMINIO DEL CORREO (FRONTEND)
     const requiredDomain = "@pascualbravo.edu.co";
     if (!email.toLowerCase().endsWith(requiredDomain)) {
       setError(
-        `❌ Solo se permite iniciar sesión con correos del dominio ${requiredDomain}.`
+        ` Solo se permite iniciar sesión con correos del dominio ${requiredDomain}.`
       );
       return; // Detiene la ejecución si el dominio es incorrecto
     }
@@ -40,14 +40,14 @@ const Login = () => {
 
       const data = await response.json();
 
-      // ✅ Guarda token y correo en localStorage
+      // Guarda token y correo en localStorage
       localStorage.setItem("token", data.token);
       localStorage.setItem("userEmail", data.email);
 
       // (opcional) muestra el contenido guardado en consola
-      console.log("Inicio de sesión exitoso:", data);
+      //console.log("Inicio de sesión exitoso:", data);
 
-      // 📢 SOLUCIÓN: Dispara manualmente el evento 'storage' para que el Navbar
+      // SOLUCIÓN: Dispara manualmente el evento 'storage' para que el Navbar
       // (u otros componentes que escuchen el evento) sepa que debe actualizarse.
       window.dispatchEvent(new Event("storage"));
 

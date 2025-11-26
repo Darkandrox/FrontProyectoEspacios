@@ -10,7 +10,7 @@ export default function PanelReservasAdmin() {
   const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 
-  // ✅ Manejar fechas del filtro
+  // Manejar fechas del filtro
   const manejarCambioFecha = (e) => {
     const fecha = e.target.value;
     if (fecha && !fechasSeleccionadas.includes(fecha)) {
@@ -22,7 +22,7 @@ export default function PanelReservasAdmin() {
     setFechasSeleccionadas(fechasSeleccionadas.filter((f) => f !== fecha));
   };
 
-  // ✅ Filtrar reservas por fecha
+  // Filtrar reservas por fecha
   const filtrarReservas = async () => {
   if (fechasSeleccionadas.length === 0) {
     setError("Debes seleccionar al menos una fecha.");
@@ -49,7 +49,7 @@ export default function PanelReservasAdmin() {
       throw new Error(err.error || "Error al filtrar reservas");
     }
 
-    // 👇 Corrección importante aquí
+    // Corrección importante aquí
     let data = [];
     const text = await response.text();
     if (text) {
@@ -65,7 +65,7 @@ export default function PanelReservasAdmin() {
 };
 
 
-  // ✅ Cancelar una reserva (NO eliminar)
+  // Cancelar una reserva (NO eliminar)
   const cancelarReserva = async (id) => {
     if (!window.confirm("¿Seguro que deseas cancelar esta reserva?")) return;
     try {
@@ -97,7 +97,7 @@ export default function PanelReservasAdmin() {
     <div className={StyleVistaReservas.contenedor}>
       <h2 className={StyleVistaReservas.titulo}>Panel de Reservas (Administrador)</h2>
 
-      {/* ✅ Filtro de fechas */}
+      {/* Filtro de fechas */}
       <div className={StyleVistaReservas.filtro}>
         <h3>Seleccionar Fechas</h3>
         <input
@@ -128,7 +128,7 @@ export default function PanelReservasAdmin() {
 
       {error && <p className={StyleVistaReservas.error}>{error}</p>}
 
-      {/* ✅ Tabla de reservas */}
+      {/* Tabla de reservas */}
       <div className={StyleVistaReservas.tablaContenedor}>
         {reservas.length > 0 ? (
           <table className={StyleVistaReservas.tabla}>

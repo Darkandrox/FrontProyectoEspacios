@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode"; // 👈 Instala con: npm install jwt-decode
+import { jwtDecode } from "jwt-decode"; 
 import StyleNav from "../styles/NavBar.module.css";
 import Logo from "../assets/pascualogohorizontal.png";
 
@@ -10,7 +10,7 @@ const Navbar = () => {
   const [userRole, setUserRole] = useState(null);
   const navigate = useNavigate();
 
-  // ✅ Revisa token y rol al cargar o cambiar
+  // Revisa token y rol al cargar o cambiar
   useEffect(() => {
     const checkLogin = () => {
       const token = localStorage.getItem("token");
@@ -22,7 +22,7 @@ const Navbar = () => {
           setUserRole(role);
           setIsLoggedIn(true);
         } catch (error) {
-          console.error("Error al decodificar el token:", error);
+          //console.error("Error al decodificar el token:", error);
           setIsLoggedIn(false);
           setUserRole(null);
         }
@@ -78,7 +78,7 @@ const Navbar = () => {
           <a onClick={() => navigate("/contacto")}>Contacto</a>
           
 
-          {/* ✅ Solo visible para administradores */}
+          {/* Solo visible para administradores */}
           {userRole === "ROLE_ADMIN" && (
             <>
               <a onClick={() => navigate("/registro")}>Registro</a>
@@ -92,7 +92,7 @@ const Navbar = () => {
             </>
           )}
 
-          {/* ✅ Solo visible para usuarios logueados */}
+          {/* Solo visible para usuarios logueados */}
           {isLoggedIn && <a onClick={() => navigate("/reservas")}>Reservar</a>}
 
           {!isLoggedIn ? (

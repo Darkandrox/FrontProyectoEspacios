@@ -40,7 +40,7 @@
   font-weight: 600;
 }
 
-/* 🔥 ESTILO CLAVE DE ESCRITORIO */
+/* ESTILO CLAVE DE ESCRITORIO */
 .gridContainer {
   display: grid;
   grid-template-columns: 2fr 1fr; /* 2/3 para lista, 1/3 para sidebar */
@@ -156,7 +156,7 @@
   font-size: 0.85rem;
 }
 
-/* 🔥 ESTILOS CLAVE DE SIDEBAR EN ESCRITORIO */
+/* ESTILOS CLAVE DE SIDEBAR EN ESCRITORIO */
 .sidebar {
   background: white;
   padding: 25px;
@@ -259,13 +259,13 @@
     padding: 20px; 
   }
 
-  /* 3. 🔥 Grilla: Apilamiento vertical */
+  /* 3. Grilla: Apilamiento vertical */
   .gridContainer {
     grid-template-columns: 1fr; /* Una sola columna para móviles y tabletas */
     gap: 20px;
   }
   
-  /* 4. 🔥 Sidebar: Desactivar 'sticky' y ponerlo al 100% de ancho */
+  /* 4. Sidebar: Desactivar 'sticky' y ponerlo al 100% de ancho */
   .sidebar {
     position: static; /* No se pega al scroll */
     height: auto;
