@@ -232,7 +232,7 @@ const handleBooking = async () => {
     }
 
     if (response.ok) {
-     // console.log("Reserva creada:", data);
+      console.log("Reserva creada:");
 
       const nuevaReserva = {
         id: data.reserva?.id || Date.now(),
