@@ -36,7 +36,7 @@ const Navbar = () => {
     return () => window.removeEventListener("storage", checkLogin);
   }, []);
 
-  const handleMenuClick = () => {
+  const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
@@ -45,12 +45,6 @@ const Navbar = () => {
     setIsLoggedIn(false);
     setUserRole(null);
     navigate("/login");
-    setIsMenuOpen(false);
-  };
-
-  const handleLoginRedirect = () => {
-    navigate("/login");
-    setIsMenuOpen(false);
   };
 
   return (
@@ -60,55 +54,51 @@ const Navbar = () => {
           src={Logo}
           alt="Logo Pascual"
           className={StyleNav.Logo}
-          onClick={() => {
-            navigate("/home");
-            setIsMenuOpen(false);
-          }}
+          onClick={() => navigate("/home")}
         />
 
-        {/* Botón hamburguesa (solo móvil) */}
+        {/* Botón hamburguesa */}
         <button
           className={StyleNav.menuToggle}
-          onClick={handleMenuClick}
+          onClick={toggleMenu}
           aria-label="Toggle menu"
         >
           ☰
         </button>
 
-        {/* Contenedor del menú */}
+        {/* Overlay para cerrar al tocar afuera */}
+        {isMenuOpen && <div className={StyleNav.overlay} onClick={toggleMenu}></div>}
+
+        {/* Contenedor menú */}
         <div
           className={`${StyleNav.navActions} ${
             isMenuOpen ? StyleNav.navMenuOpen : ""
           }`}
         >
           <nav className={StyleNav.navMenu}>
-            <a onClick={() => { navigate("/home"); setIsMenuOpen(false); }}>Inicio</a>
-            <a onClick={() => { navigate("/nosotros"); setIsMenuOpen(false); }}>Nosotros</a>
-            <a onClick={() => { navigate("/contacto"); setIsMenuOpen(false); }}>Contacto</a>
+            <a onClick={() => navigate("/home")}>Inicio</a>
+            <a onClick={() => navigate("/nosotros")}>Nosotros</a>
+            <a onClick={() => navigate("/contacto")}>Contacto</a>
 
             {userRole === "ROLE_ADMIN" && (
               <>
-                <a onClick={() => { navigate("/registro"); setIsMenuOpen(false); }}>Registro</a>
-                <a onClick={() => { navigate("/vistareservasgeneral"); setIsMenuOpen(false); }}>BD</a>
+                <a onClick={() => navigate("/registro")}>Registro</a>
+                <a onClick={() => navigate("/vistareservasgeneral")}>BD</a>
               </>
             )}
 
             {userRole === "ROLE_USER" && (
-              <a onClick={() => { navigate("/vistareservas"); setIsMenuOpen(false); }}>
-                Mis Reservas
-              </a>
+              <a onClick={() => navigate("/vistareservas")}>Mis Reservas</a>
             )}
 
             {isLoggedIn && (
-              <a onClick={() => { navigate("/reservas"); setIsMenuOpen(false); }}>
-                Reservar
-              </a>
+              <a onClick={() => navigate("/reservas")}>Reservar</a>
             )}
           </nav>
 
           <div className={StyleNav.navButtons}>
             {!isLoggedIn ? (
-              <button onClick={handleLoginRedirect} className={StyleNav.btnLogin}>
+              <button onClick={() => navigate("/login")} className={StyleNav.btnLogin}>
                 Iniciar Sesión
               </button>
             ) : (

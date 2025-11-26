@@ -1,4 +1,6 @@
-/* Contenedor del header */
+/* ===================================== */
+/* CONTENEDOR HEADER */
+/* ===================================== */
 .headerContainer {
   background-color: #ffffff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -7,7 +9,7 @@
   z-index: 999;
 }
 
-/* Header principal */
+/* HEADER INTERNO */
 .header {
   display: flex;
   justify-content: space-between;
@@ -15,115 +17,104 @@
   padding: 15px 25px;
 }
 
-/* Logo */
+/* LOGO */
 .Logo {
   width: 180px;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
-
 .Logo:hover {
   transform: scale(1.05);
 }
 
-/* Botón menú móvil (Visible por defecto) */
+/* BOTÓN MENÚ CELULAR */
 .menuToggle {
   background: none;
   border: none;
-  font-size: 26px;
+  font-size: 28px;
   cursor: pointer;
-  color: #333;
-  display: block; /* visible en móvil */
+  display: block;
+  z-index: 1001;
 }
 
-/* Contenedor de enlaces y botones */
+/* ===================================== */
+/* OVERLAY PARA CERRAR MENÚ */
+/* ===================================== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 998;
+}
+
+/* ===================================== */
+/* MENÚ GENERAL (OCULTO POR DEFECTO EN MOVIL) */
+/* ===================================== */
 .navActions {
-  display: none; /* por defecto oculto en móvil */
+  display: none;
 }
 
-/* Menú de navegación (solo enlaces) */
+/* NAV LINKS */
 .navMenu {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  text-align: center;
   padding: 10px 0;
-  border-top: 1px solid #ddd;
 }
 
-/* Contenedor de botones */
+/* BOTONES */
 .navButtons {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 10px 20px 0;
+  padding: 15px 20px;
 }
 
-/* Abrir menú en móvil */
-.navMenuOpen .navActions {
-  display: flex;
-}
-
-/* Título del menú */
-.h1nav {
-  font-size: 1.4rem;
-  color: #d6001c;
-  margin: 10px 0;
-  font-weight: bold;
-}
-
-/* Enlaces */
+/* ENLACES DE MENÚ */
 .navMenu a {
   color: #333;
   text-decoration: none;
   font-weight: 500;
-  padding: 10px;
+  padding: 12px 10px;
   border-radius: 6px;
-  transition: all 0.3s ease;
+  transition: 0.3s ease;
 }
-
 .navMenu a:hover {
   color: #d6001c;
-  background-color: #f7f7f7;
+  background: #f4f4f4;
 }
 
-/* Botones */
-.btnLogin, .btnLogout {
-  width: 100%;
+/* BOTONES LOGIN Y LOGOUT */
+.btnLogin,
+.btnLogout {
   padding: 10px 15px;
-  border: none;
-  font-weight: 600;
   border-radius: 8px;
+  border: none;
   cursor: pointer;
-  transition: background 0.3s ease;
+  font-weight: 600;
 }
 
 .btnLogin {
-  background-color: #002049;
+  background: #002049;
   color: white;
+}
+.btnLogout {
+  background: #e4e4e4;
 }
 
 .btnLogin:hover {
-  background-color: #455c7b;
+  background: #3d567a;
 }
-
-.btnLogout {
-  background-color: #f2f2f2;
-  color: #333;
-}
-
 .btnLogout:hover {
-  background-color: #e0e0e0;
+  background: #d5d5d5;
 }
 
-
-
-/* =============================== */
-/* ==== DISEÑO ESCRITORIO ======== */
-/* =============================== */
+/* ===================================== */
+/* ESCRITORIO */
+/* ===================================== */
 @media (min-width: 769px) {
-
-  /* Ocultar menú móvil */
   .menuToggle {
     display: none;
   }
@@ -131,17 +122,13 @@
   .navActions {
     display: flex;
     flex-direction: row;
-    position: static;
-    background: none;
-    box-shadow: none;
-    width: auto;
+    align-items: center;
   }
 
   .navMenu {
     flex-direction: row;
-    border-top: none;
-    padding: 0;
     gap: 15px;
+    padding: 0;
     margin-right: 20px;
   }
 
@@ -150,68 +137,41 @@
     padding: 0;
   }
 
-  .h1nav {
-    display: none;
-  }
-
-  .btnLogin, .btnLogout {
+  .btnLogin,
+  .btnLogout {
     width: auto;
   }
 }
 
-
-
-/* =========================================== */
-/* ==== MENÚ DESLIZANTE CELULAR (NUEVO) ===== */
-/* =========================================== */
+/* ===================================== */
+/* CELULAR – MENÚ DESLIZANTE */
+/* ===================================== */
 @media (max-width: 768px) {
-
-  /* Panel lateral completo */
   .navActions {
     position: fixed;
     top: 0;
-    right: -260px; /* oculto */
-    width: 260px;
+    right: -270px;
+    width: 270px;
     height: 100vh;
-    background: #ffffff;
-    box-shadow: -2px 0 6px rgba(0, 0, 0, 0.15);
-    padding-top: 70px;
+    background: #fff;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    padding-top: 70px;
     transition: right 0.35s ease-in-out;
-    z-index: 999;
+    z-index: 1000;
   }
 
-  /* Cuando se abre el menú */
-  .navMenuOpen .navActions {
-    right: 0;
+  /* MENÚ ABIERTO */
+  .navMenuOpen {
+    right: 0 !important;
   }
 
-  /* Menú interno */
   .navMenu {
-    flex-direction: column;
-    gap: 12px;
     padding: 0 20px;
-    border-top: none;
-    text-align: left;
+    gap: 10px;
   }
 
-  .navMenu a {
-    font-size: 1.1rem;
-    padding: 12px 5px;
-    width: 100%;
-  }
-
-  /* Botones */
   .navButtons {
-    flex-direction: column;
     padding: 0 20px;
-    gap: 12px;
-  }
-
-  .btnLogin,
-  .btnLogout {
-    width: 100%;
   }
 }
