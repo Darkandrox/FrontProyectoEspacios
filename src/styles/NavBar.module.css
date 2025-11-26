@@ -33,51 +33,38 @@
   font-size: 26px;
   cursor: pointer;
   color: #333;
-  /* Display block por defecto, se oculta en escritorio */
-  display: block; 
+  display: block; /* visible en móvil */
 }
 
-/* Contenedor de enlaces y botones (Se necesita para agrupar todo en escritorio) */
+/* Contenedor de enlaces y botones */
 .navActions {
-  display: flex; /* Usamos flexbox para alinear enlaces y botones en escritorio */
-  align-items: center;
-  /* Oculto por defecto en móvil, mostrado en .navMenuOpen */
-  display: none; 
+  display: none; /* por defecto oculto en móvil */
 }
 
 /* Menú de navegación (solo enlaces) */
 .navMenu {
   display: flex;
-  flex-direction: column; /* Apilado en móvil */
-  gap: 5px; /* Espacio entre enlaces en móvil */
+  flex-direction: column;
+  gap: 5px;
   text-align: center;
   padding: 10px 0;
   border-top: 1px solid #ddd;
 }
 
-/* Contenedor de botones (para apilarlos en móvil, si aplica) */
+/* Contenedor de botones */
 .navButtons {
   display: flex;
-  flex-direction: column; /* Apilado en móvil */
+  flex-direction: column;
   gap: 10px;
-  padding: 10px 20px 0; /* Relleno para separarlo de los enlaces */
+  padding: 10px 20px 0;
 }
 
 /* Abrir menú en móvil */
 .navMenuOpen .navActions {
-  /* Al abrir el menú, mostramos las acciones (enlaces + botones) */
   display: flex;
-  flex-direction: column;
-  position: absolute; /* Coloca el menú bajo el header */
-  top: 55px; /* Ajusta según la altura de tu header */
-  left: 0;
-  width: 100%;
-  background-color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  z-index: 998;
 }
 
-/* Título del menú (Visible solo en móvil) */
+/* Título del menú */
 .h1nav {
   font-size: 1.4rem;
   color: #d6001c;
@@ -102,7 +89,7 @@
 
 /* Botones */
 .btnLogin, .btnLogout {
-  width: 100%; /* Ocupa todo el ancho en móvil */
+  width: 100%;
   padding: 10px 15px;
   border: none;
   font-weight: 600;
@@ -131,47 +118,100 @@
 
 
 
+/* =============================== */
+/* ==== DISEÑO ESCRITORIO ======== */
+/* =============================== */
 @media (min-width: 769px) {
-  
-  /* Ocultar el botón del menú móvil */
+
+  /* Ocultar menú móvil */
   .menuToggle {
     display: none;
   }
 
-
   .navActions {
-    display: flex; 
-    flex-direction: row; 
-    position: static; 
+    display: flex;
+    flex-direction: row;
+    position: static;
     background: none;
     box-shadow: none;
     width: auto;
-    z-index: auto;
   }
 
-  /* Menú de navegación (Enlaces) */
   .navMenu {
-    display: flex;
-    flex-direction: row; /* Horizontal */
+    flex-direction: row;
     border-top: none;
     padding: 0;
-    gap: 15px; /* Espacio horizontal entre enlaces */
-    margin-right: 20px; /* Separación entre enlaces y botones */
+    gap: 15px;
+    margin-right: 20px;
   }
 
-  /* Contenedor de botones: De apilado a horizontal */
   .navButtons {
-    flex-direction: row; /* Horizontal */
+    flex-direction: row;
     padding: 0;
   }
-  
-  /* Eliminar el título visible en móvil */
+
   .h1nav {
     display: none;
   }
-  
-  /* Los botones ya no necesitan ocupar el 100% */
+
   .btnLogin, .btnLogout {
-    width: auto; 
+    width: auto;
+  }
+}
+
+
+
+/* =========================================== */
+/* ==== MENÚ DESLIZANTE CELULAR (NUEVO) ===== */
+/* =========================================== */
+@media (max-width: 768px) {
+
+  /* Panel lateral completo */
+  .navActions {
+    position: fixed;
+    top: 0;
+    right: -260px; /* oculto */
+    width: 260px;
+    height: 100vh;
+    background: #ffffff;
+    box-shadow: -2px 0 6px rgba(0, 0, 0, 0.15);
+    padding-top: 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: right 0.35s ease-in-out;
+    z-index: 999;
+  }
+
+  /* Cuando se abre el menú */
+  .navMenuOpen .navActions {
+    right: 0;
+  }
+
+  /* Menú interno */
+  .navMenu {
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 20px;
+    border-top: none;
+    text-align: left;
+  }
+
+  .navMenu a {
+    font-size: 1.1rem;
+    padding: 12px 5px;
+    width: 100%;
+  }
+
+  /* Botones */
+  .navButtons {
+    flex-direction: column;
+    padding: 0 20px;
+    gap: 12px;
+  }
+
+  .btnLogin,
+  .btnLogout {
+    width: 100%;
   }
 }

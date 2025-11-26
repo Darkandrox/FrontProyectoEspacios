@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode"; 
+import { jwtDecode } from "jwt-decode";
 import StyleNav from "../styles/NavBar.module.css";
 import Logo from "../assets/pascualogohorizontal.png";
 
@@ -10,7 +10,6 @@ const Navbar = () => {
   const [userRole, setUserRole] = useState(null);
   const navigate = useNavigate();
 
-  // Revisa token y rol al cargar o cambiar
   useEffect(() => {
     const checkLogin = () => {
       const token = localStorage.getItem("token");
@@ -22,7 +21,7 @@ const Navbar = () => {
           setUserRole(role);
           setIsLoggedIn(true);
         } catch (error) {
-          //console.error("Error al decodificar el token:", error);
+          console.error("Error al decodificar token:", error);
           setIsLoggedIn(false);
           setUserRole(null);
         }
@@ -37,17 +36,21 @@ const Navbar = () => {
     return () => window.removeEventListener("storage", checkLogin);
   }, []);
 
-  const handleMenuClick = () => setIsMenuOpen((prev) => !prev);
+  const handleMenuClick = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
     setUserRole(null);
     navigate("/login");
+    setIsMenuOpen(false);
   };
 
   const handleLoginRedirect = () => {
     navigate("/login");
+    setIsMenuOpen(false);
   };
 
   return (
@@ -57,9 +60,13 @@ const Navbar = () => {
           src={Logo}
           alt="Logo Pascual"
           className={StyleNav.Logo}
-          onClick={() => navigate("/home")}
+          onClick={() => {
+            navigate("/home");
+            setIsMenuOpen(false);
+          }}
         />
 
+        {/* Botón hamburguesa (solo móvil) */}
         <button
           className={StyleNav.menuToggle}
           onClick={handleMenuClick}
@@ -68,43 +75,49 @@ const Navbar = () => {
           ☰
         </button>
 
-        <nav
-          className={`${StyleNav.navMenu} ${
+        {/* Contenedor del menú */}
+        <div
+          className={`${StyleNav.navActions} ${
             isMenuOpen ? StyleNav.navMenuOpen : ""
           }`}
         >
-          <a onClick={() => navigate("/home")}>Inicio</a>
-          <a onClick={() => navigate("/nosotros")}>Nosotros</a>
-          <a onClick={() => navigate("/contacto")}>Contacto</a>
-          
+          <nav className={StyleNav.navMenu}>
+            <a onClick={() => { navigate("/home"); setIsMenuOpen(false); }}>Inicio</a>
+            <a onClick={() => { navigate("/nosotros"); setIsMenuOpen(false); }}>Nosotros</a>
+            <a onClick={() => { navigate("/contacto"); setIsMenuOpen(false); }}>Contacto</a>
 
-          {/* Solo visible para administradores */}
-          {userRole === "ROLE_ADMIN" && (
-            <>
-              <a onClick={() => navigate("/registro")}>Registro</a>
-              <a onClick={() => navigate("/vistareservasgeneral")}>BD</a>
-            </>
-          )}
+            {userRole === "ROLE_ADMIN" && (
+              <>
+                <a onClick={() => { navigate("/registro"); setIsMenuOpen(false); }}>Registro</a>
+                <a onClick={() => { navigate("/vistareservasgeneral"); setIsMenuOpen(false); }}>BD</a>
+              </>
+            )}
 
-          {userRole === "ROLE_USER" && (
-            <>
-              <a onClick={() => navigate("/vistareservas")}>Mis Reservas</a>
-            </>
-          )}
+            {userRole === "ROLE_USER" && (
+              <a onClick={() => { navigate("/vistareservas"); setIsMenuOpen(false); }}>
+                Mis Reservas
+              </a>
+            )}
 
-          {/* Solo visible para usuarios logueados */}
-          {isLoggedIn && <a onClick={() => navigate("/reservas")}>Reservar</a>}
+            {isLoggedIn && (
+              <a onClick={() => { navigate("/reservas"); setIsMenuOpen(false); }}>
+                Reservar
+              </a>
+            )}
+          </nav>
 
-          {!isLoggedIn ? (
-            <button onClick={handleLoginRedirect} className={StyleNav.btnLogin}>
-              Iniciar Sesión
-            </button>
-          ) : (
-            <button onClick={handleLogout} className={StyleNav.btnLogout}>
-              Cerrar Sesión
-            </button>
-          )}
-        </nav>
+          <div className={StyleNav.navButtons}>
+            {!isLoggedIn ? (
+              <button onClick={handleLoginRedirect} className={StyleNav.btnLogin}>
+                Iniciar Sesión
+              </button>
+            ) : (
+              <button onClick={handleLogout} className={StyleNav.btnLogout}>
+                Cerrar Sesión
+              </button>
+            )}
+          </div>
+        </div>
       </div>
     </header>
   );
